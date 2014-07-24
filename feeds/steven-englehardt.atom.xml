@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Research</title><link href="/" rel="alternate"></link><link href="/feeds/steven-englehardt.atom.xml" rel="self"></link><id>/</id><updated>2014-07-21T00:00:00+02:00</updated><entry><title>Hello World</title><link href="/hello-world.html" rel="alternate"></link><updated>2014-07-21T00:00:00+02:00</updated><author><name>Steven Englehardt</name></author><id>tag:,2014-07-21:hello-world.html</id><summary type="html">&lt;h2&gt;Hello World&lt;/h2&gt;
+&lt;p&gt;Hello World&lt;/p&gt;
+&lt;p&gt;.. code-block:: python
+    :linenos: table&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nb"&gt;import&lt;/span&gt; &lt;span class="n"&gt;requests&lt;/span&gt;
+
+&lt;span class="n"&gt;page&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;requests&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;http://www.google.com&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;</summary></entry></feed>
