@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:og="http://ogp.me/ns#"
+      xmlns:fb="https://www.facebook.com/2008/fbml">
+<head>
+    <title>JSONLevelDB - Steven Englehardt</title>
+    <!-- Using the latest rendering mode for IE -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+
+    <!-- Open Graph tags -->
+            <meta property="og:type" content="article"/>
+            <meta property="og:title" content="JSONLevelDB"/>
+            <meta property="og:url" content="/jsonleveldb.html"/>
+            <meta property="og:description" content="LevelDB is a simple and fast key-value store. It supports a simple API to Push, Get, and Delete (key, value) byte-string pairs to and from the database with a few extra options for batched writes. Similar to SQLite, it's an excellent embedded storage option but should provide better performance ..."/>
+
+    <!-- Bootstrap -->
+        <link rel="stylesheet" href="/theme/css/bootstrap.min.css" type="text/css"/>
+    <link href="/theme/css/font-awesome.min.css" rel="stylesheet">
+
+    <link href="/theme/css/pygments/github.css" rel="stylesheet">
+    <link rel="stylesheet" href="/theme/css/style.css" type="text/css"/>
+
+
+</head>
+<body>
+
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="/" class="navbar-brand">
+Steven Englehardt            </a>
+        </div>
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav">
+                         <li><a href="/pages/about-me.html">
+                             About me
+                          </a></li>
+                         <li><a href="/pages/projects.html">
+                             Projects
+                          </a></li>
+                        <li class="active">
+                            <a href="/category/blog.html">Blog</a>
+                        </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="/archives.html"><i class="fa fa-th-list"></i><span class="icon-label">Archives</span></a></li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+</div> <!-- /.navbar -->
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-9">
+
+    <section id="content">
+        <article>
+            <header class="page-header">
+                <h1>
+                    <a href="/jsonleveldb.html"
+                       rel="bookmark"
+                       title="Permalink to JSONLevelDB">
+                        JSONLevelDB
+                    </a>
+                </h1>
+            </header>
+            <div class="entry-content">
+                <div class="panel">
+                    <div class="panel-body">
+<footer class="post-info">
+    <span class="label label-default">Date</span>
+    <span class="published">
+        <i class="fa fa-calendar"></i><time datetime="2014-09-02T00:00:00"> Tue 02 September 2014</time>
+    </span>
+
+
+
+<span class="label label-default">Tags</span>
+	<a href="/tag/code.html">Code</a>
+    
+</footer><!-- /.post-info -->                    </div>
+                </div>
+                <p><a href="https://code.google.com/p/leveldb/">LevelDB</a> is a simple and fast key-value
+store. It supports a simple API to <code>Push</code>, <code>Get</code>, and <code>Delete</code> (key, value)
+byte-string pairs to and from the database with a few extra options for batched 
+writes. Similar to SQLite, it's an excellent embedded storage option but should 
+provide better <a href="https://leveldb.googlecode.com/svn/trunk/doc/benchmark.html">performance</a>.</p>
+<p><a href="https://code.google.com/p/py-leveldb/">py-leveldb</a> wraps the C++ library and
+replicates most of the API. This includes the requirement that both the key and
+value be byte-strings (<code>str</code> in 2.x and <code>byte</code> in 3.x). JSONLevelDB wraps the
+API exposed by py-leveldb to include an automatic serialization to
+JSON when using <code>Put</code> (both directly and for <code>WriteBatch</code> objects) and
+de-serialization when using <code>Get</code>.</p>
+<div class="gist">
+    <script src='https://gist.github.com/36002d4e4fd938d013e2.js'></script>
+    <noscript>
+        <pre><code># A wrapper to serialize data read from/written to leveldb in json
+# Steven Englehardt
+import leveldb
+import json
+
+class JsonLevelDB(object):
+    def __init__(self, filename, **kwargs):
+        self._filename = filename
+        self._db = leveldb.LevelDB(self._filename, **kwargs)
+    
+    def Get(self, key, verify_checksums = False, fill_cache = True):
+        return json.loads(self._db.Get(key, verify_checksums=verify_checksums, fill_cache=fill_cache))
+    
+    def Put(self, key, value, sync = False):
+        self._db.Put(key, json.dumps(value), sync=sync)
+    
+    def Delete(self, key, sync = False):
+        self._db.Delete(key, sync=sync)
+
+    def Write(self, write_batch, sync = False):
+        self._db.Write(write_batch._batch, sync=sync)
+
+    def RangeIter(self, key_from = None, key_to = None, include_value = True, verify_checksums = False, fill_cache = True):
+        iterator = self._db.RangeIter(key_from, key_to, include_value=include_value, verify_checksums=verify_checksums, fill_cache=fill_cache) 
+        if include_value:
+            for k, v in iterator:
+                yield k, json.loads(v)
+        else:
+            for k in iterator:
+                yield k
+
+    def GetStats(self):
+        return self._db.GetStats()
+
+class JsonWriteBatch(object):
+    def __init__(self):
+        self._batch = leveldb.WriteBatch()
+    
+    def Put(self, key, value):
+        self._batch.Put(key, json.dumps(value))
+
+    def Delete(self, key):
+        self._batch.Delete(key)</code></pre>
+    </noscript>
+</div>
+            </div>
+            <!-- /.entry-content -->
+        </article>
+    </section>
+
+        </div>
+        <div class="col-sm-3 well well-sm" id="sidebar">
+
+<aside>
+    <section>
+        <ul class="list-group list-group-flush">
+                <li class="list-group-item"><h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Social</span></h4>
+                  <ul class="list-group" id="social">
+                    <li class="list-group-item"><a href="http://github.com/englehardt"><i
+                            class="fa fa-github-square fa-lg"></i> github
+                    </a></li>
+                    <li class="list-group-item"><a href="http://www.linkedin.com/pub/steven-englehardt/14/298/783/"><i
+                            class="fa fa-linkedin-square fa-lg"></i> linkedin
+                    </a></li>
+                    <li class="list-group-item"><a href="http://scholar.google.com/citations?user=rHHboSgAAAAJ&hl=en"><i
+                            class="fa fa-google scholar-square fa-lg"></i> google scholar
+                    </a></li>
+                  </ul>
+                </li>
+
+
+
+                <li class="list-group-item"><a href="/"><h4><i class="fa fa-tags fa-lg"></i><span class="icon-label">Tags</span></h4></a>
+                    <ul class="list-group" id="tags">
+                        <li class="list-group-item tag-4">
+                            <a href="/tag/code.html">
+                                Code
+                            </a>
+                        </li>
+                    </ul>
+                </li>    
+
+        </ul>
+    </section>
+
+</aside>        </div>
+    </div>
+</div>
+<footer>
+   <div class="container">
+      <hr>
+      <div class="row">
+         <div class="col-xs-10">&copy; 2014 Steven Englehardt
+            &middot; Powered by <a href="https://github.com/DandyDev/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
+            <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>,
+            <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>         </div>
+         <div class="col-xs-2"><p class="pull-right"><i class="fa fa-arrow-up"></i> <a href="#">Back to top</a></p></div>
+      </div>
+   </div>
+</footer>
+<script src="//code.jquery.com/jquery.js"></script>
+
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="/theme/js/bootstrap.min.js"></script>
+
+<!-- Enable responsive features in IE8 with Respond.js (https://github.com/scottjehl/Respond) -->
+<script src="/theme/js/respond.min.js"></script>
+
+</body>
+</html>
