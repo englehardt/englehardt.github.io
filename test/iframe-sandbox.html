@@ -1,0 +1,8 @@
+<html>
+  <body>
+    <button onclick="function(){document.cookie = 'test-cookie:test-value'}">
+      Click to set cookie
+    </button>
+    <iframe sandbox="allow-scripts" srcdoc="<div id='cookie-value'></div><button onclick='function() {outdiv = document.getElementById('cookie-value'); outdiv.innerHTML = document.cookie;}'> Click to display cookies </button>"></iframe>
+  </body>
+</html>
