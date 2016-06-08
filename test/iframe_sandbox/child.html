@@ -3,9 +3,11 @@
   <script>
     function displayCookies(){
       document.getElementById('cookie-value').innerHTML = document.cookie;
+      document.getElementById('successMessage').innerHTML = "cookie set successfully!";
     }
   </script>
   <div id='cookie-value'></div>
+  <div id='successMessage'></div>
   <button onclick='displayCookies()'>Click to display cookies</button>
   </body>
 </html>
