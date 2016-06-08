@@ -3,11 +3,13 @@
     <script>
     function setCookie() {
       document.cookie = "test-cookie:test-value";
+      document.getElementById('result').innerHTML = "Cookie set successfully!";
     }
     </script>
     <button onclick="setCookie()">
       Click to set cookie
     </button>
+    <div id="result"></div>
     <br>
     <h3>Set cookie for subresource on a different domain</h3>
     <iframe src="http://cs.princeton.edu/~ste/test/iframe_sandbox/child_setter.html"></iframe>
