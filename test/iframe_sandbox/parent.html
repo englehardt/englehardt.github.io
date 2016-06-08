@@ -1,0 +1,13 @@
+<html>
+  <body>
+    <script>
+    function setCookie() {
+      document.cookie = "test-cookie:test-value";
+    }
+    </script>
+    <button onclick="setCookie()">
+      Click to set cookie
+    </button>
+    <iframe sandbox="allow-scripts" src="child.html"></iframe>
+  </body>
+</html>
