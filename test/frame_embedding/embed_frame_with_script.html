@@ -1,17 +1,26 @@
 <html>
 <body>
-<p> Hello. I include iframes directly and from within an inline script and external script.</p>
-<img src="../images/dog1.jpg"></img>
 <div id="direct"><p> Included directly on the page</p><iframe src="page1.html"></iframe></div><br>
 <div id="inline"><p> Injected by inline script</p></div><br>
 <div id="external"><p> Injected by external script</p></div><br>
+<div id="dog"><p>Image of a dog injected by inline script</p></div>
+<div id="script"><p>script injected by an inline script (which then injects external dog above</p></div>
 
 <script>
+
+// Add an iframe
 var div = document.getElementById("inline");
 div.innerHTML = div.innerHTML + "<iframe src='page2.html'></iframe>";
-</script>
 
-<script src="inject_iframe.js"></script>
+// Add an image
+div = document.getElementById("dog");
+div.innerHTML = div.innerHTML + "<img src='../images/dog1.jpg'>"
+
+// Add a script which then adds an iframe
+div = document.getElementById("script");
+div.innerHTML = div.innerHTML + "<script src='inject_iframe.js'></script>"
+
+</script>
 
 </body>
 </html>
