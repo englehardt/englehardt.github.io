@@ -1,3 +1,6 @@
+# MAC files
+.DS_STORE
+
 # firefox directories
 firefox-bin/
 
