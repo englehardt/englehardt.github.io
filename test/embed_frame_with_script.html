@@ -1,0 +1,15 @@
+<html>
+<body>
+<p> Hello. I have both an inline and external script which each inject an iframe.</p>
+<div id="inline"><p> Injected by inline script</p></div><br>
+<div id="external"><p> Injected by external script</p></div><br>
+
+<script>
+var div = document.getElementById("inline");
+div.innerHTML = div.innerHTML + "<iframe sandbox src='iframes.html'></iframe>";
+</script>
+
+<script src="inject_iframe.js"></script>
+
+</body>
+</html>
