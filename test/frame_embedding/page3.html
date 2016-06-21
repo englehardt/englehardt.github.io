@@ -3,8 +3,12 @@
   </head>
 
   <body>
-    <p>Dog 3</p>
-    <img src="../images/dog3.jpg">
+    <div id="dog"><p>Dog 3</p></div>
   </body>
+
+  <script>
+    var div = document.getElementById("dog");
+    div.innerHTML = div.innerHTML + "<img src='../images/dog3.jpg'>"
+  </script>
 
 </html>
