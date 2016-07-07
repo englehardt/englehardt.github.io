@@ -3,9 +3,11 @@
   </head>
   <body>
     <p> This page embeds two scripts, one local script which should not be
-    blocked by tracking protection and one remote one which should</p>
+    blocked by tracking protection and one remote one which should. It also
+    embeds trackertest.org in an iframe.</p>
     <script src="safe_script.js"></script>
     <script src="http://trackertest.org/tracker.js"></script>
+    <iframe src="http://trackertest.org/index.html"></iframe>
 
   </body>
 </html>
