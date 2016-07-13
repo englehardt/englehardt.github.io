@@ -8,4 +8,5 @@ div.innerHTML = div.innerHTML + "<img src='http://cs.princeton.edu/~ste/images/p
 function functionInInjectedScript() {
   var div = document.createElement("div");
   div.innerHTML = "<img src='https://people.mozilla.org/PeopleOfMozilla.jpg'>";
+  document.body.appendChild('body');
 }
