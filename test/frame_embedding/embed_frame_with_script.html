@@ -5,8 +5,11 @@
 <div id="external"><p> Injected by external script</p></div><br>
 <div id="external-img"><p> Injected by external script</p></div><br>
 <div id="dog"><p>Image of a dog injected by inline script</p></div>
+<iframe id="page4" src="about:blank"></iframe>
 
 <script src="inject_iframe.js"></script>
+<script src="navigate_iframe.js"></script>
+<script src="inject_self_navigating_iframe.js"></script>
 
 <script>
 // Add an iframe
@@ -21,6 +24,8 @@ div.innerHTML = div.innerHTML + "<img src='../images/parent-dog.jpg'>";
 var script = document.createElement("script");
 script.src = "dummy_script.js"
 document.body.appendChild(script);
+
+// Navigate an iframe
 </script>
 
 <script>
