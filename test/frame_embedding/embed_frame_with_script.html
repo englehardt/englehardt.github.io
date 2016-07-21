@@ -22,8 +22,18 @@ div.innerHTML = div.innerHTML + "<img src='../images/parent-dog.jpg'>";
 
 // Add a script
 var script = document.createElement("script");
-script.src = "dummy_script.js"
+script.src = "blank_script.js"
 document.body.appendChild(script);
+
+// Add an image
+var img = document.createElement("img");
+img.src = "../images/dog1.jpg"
+document.body.appendChild(img);
+
+// Add an iframe
+var iframe = document.createElement("iframe");
+iframe.src = "page1.html"
+document.body.appendChild(iframe);
 
 // Navigate an iframe
 </script>
