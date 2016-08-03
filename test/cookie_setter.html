@@ -1,0 +1,24 @@
+<html>
+    <head></head>
+    <body>
+
+        <p> Enter the cookie value you'd like to set
+        <input type="text" name="cookie_value" id="cookie_value"></p><br>
+        <button type="button" onclick="setCookie()">Set Cookie</button><br><br>
+
+        <button type="button" onclick="displayCookie()">Display Cookie</button>
+        <pre id="cookie_display"></pre>
+
+        <script>
+        function setCookie() {
+            var input = document.getElementById("cookie_value");
+            document.cookie = "TestCookie=" + input.value;
+        }
+        function displayCookie() {
+            var pre = document.getElementById("cookie_display");
+            pre.innerHTML = document.cookie;
+        }
+        </script>
+
+    </body>
+</html>
