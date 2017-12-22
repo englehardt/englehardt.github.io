@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Demo - Login manager autofill abuse</title>
+<link rel="stylesheet" href="https://senglehardt.com/demo/no_boundaries/loginmanager/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+</head>
+<body>
+  <div class="container">
+    <h1>Demo - Login manager autofill abuse</h1>
+    <p>An invisible form has been injected into this page, which causes the browser's built-in login manager to
+    automatically fill the injected form with the credentials you saved on the
+    <a href="index.html">previous page</a>.
+    Once the form is filled, our script retrieves the information and displays it below.
+    Check out our <a href="https://freedom-to-tinker.com/">blog post</a> for more information.</p>
+    <p class="text-muted">On Chrome you need to interact with the page (i.e., click anywhere)
+    for the password to be sniffed.</p>
+    <p><b>NOTE:</b>This approach only allows the recovery of your credentials
+    registered for <b>this website</b> (senglehardt.com). It is not possible to
+    access credentials for other websites.</p>
+
+    <div class="alert alert-info" role="alert">
+      <h3 class="panel-title">Result</h3>
+      <p>Sniffed email: <span id="sniffed_email"> ?</span></p>
+      <p>Sniffed password: <span id="sniffed_password"> ?</span></p>
+  </div>
+
+    <p>Please consult the following links if you'd like to delete the email and password saved for this website.</p>
+    <ul>
+      <li><a href="https://support.google.com/chrome/answer/95606?hl=en&co=GENIE.Platform=Desktop">Chrome</a></li>
+      <li><a href="https://support.mozilla.org/en-US/kb/password-manager-remember-delete-change-and-import#w_viewing-and-deleting-passwords">Firefox</a></li>
+      <li><a href="https://support.apple.com/guide/safari/passwords-preferences-sfri40599/mac">Safari</a></li>
+    </ul>
+
+</div>
+<script src="https://rawgit.com/gunesacar/8a33694d13724375f84f93fc0976a982/raw/ed5a691595b1053dd8aa341fe58f2cb059a0c611/loginmanager_sniff.js" integrity="sha384-LP8LM5NVl31axPIR9hjwqxuZcgdbB8RX6eLOOn6G0yHB2neHdRhilv//XnNJ4TI+" crossorigin="anonymous"></script>
+</body>
+</html>
