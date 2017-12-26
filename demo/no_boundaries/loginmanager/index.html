@@ -36,7 +36,14 @@
         <li>Follow the instructions on the next page.</li>
       </ol>
 
-    <form action="endpoint.html" onsubmit="return false;" method="POST">
+    <script>
+      var preventSubmit = function() {
+        window.location = 'endpoint.html';
+        return false;
+      };
+    </script>
+
+    <form action="endpoint.html" onsubmit="return preventSubmit();" method="POST">
       <div class="form-group">
         <label for="exampleInputEmail1">Fake Email address</label>
         <input type="email" class="form-control" id="demo-email" aria-describedby="emailHelp" placeholder="Enter a fake email">
