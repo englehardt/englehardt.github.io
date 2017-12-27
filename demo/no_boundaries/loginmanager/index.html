@@ -33,14 +33,13 @@
       <ol>
         <li>Submit the following form with <b>fake credentials</b></li>
         <li>Your browser will ask whether you want to save this login. Click "Save".</li>
-        <li>Follow the instructions on the next page.</li>
       </ol>
 
     <script>
       document.body.addEventListener('submit', function ajax(e){
         e.preventDefault();
         setTimeout(function(){
-            var parentNode = e.target.parentNode
+            var parentNode = e.target.parentNode;
             parentNode.removeChild(e.target);
             history.replaceState({success:true}, 'title', "index.html");
             var newLink = document.createElement('a');
