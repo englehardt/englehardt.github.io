@@ -37,13 +37,21 @@
       </ol>
 
     <script>
-      var preventSubmit = function() {
-        window.location = 'endpoint.html';
-        return false;
-      };
+      document.body.addEventListener('submit', function ajax(e){
+        e.preventDefault();
+        setTimeout(function(){
+            var parentNode = e.target.parentNode
+            parentNode.removeChild(e.target);
+            history.replaceState({success:true}, 'title', "index.html");
+            var newLink = document.createElement('a');
+            newLink.href = 'sniff.html';
+            newLink.innerHTML = 'Please save the password and CLICK HERE to continue the demo.';
+            parentNode.appendChild(newLink);
+        }, 1);
+      }, false);
     </script>
 
-    <form action="endpoint.html" onsubmit="return preventSubmit();" method="POST">
+    <form action="endpoint.html" method="POST">
       <div class="form-group">
         <label for="exampleInputEmail1">Fake Email address</label>
         <input type="email" class="form-control" id="demo-email" aria-describedby="emailHelp" placeholder="Enter a fake email">
@@ -54,6 +62,7 @@
         <input type="password" class="form-control" id="demo-pwd" placeholder="Enter a fake password">
         <small id="emailHelp" class="form-text text-muted">Please do not enter a real password.</small>
       </div>
+      <div id='login'></div>
       <button type="submit" class="btn btn-primary">Submit</button>
     </form>
     </div>
