@@ -1,0 +1,44 @@
+<html>
+  <head>
+    <script>
+      window.fbAsyncInit = function() {
+        FB.init({
+          appId      : '421533251633307',
+          cookie     : true,
+          xfbml      : true,
+          version    : '2.12'
+        });
+
+        FB.AppEvents.logPageView();
+
+      };
+
+      (function(d, s, id){
+         var js, fjs = d.getElementsByTagName(s)[0];
+         if (d.getElementById(id)) {return;}
+         js = d.createElement(s); js.id = id;
+         js.src = "https://connect.facebook.net/en_US/sdk.js";
+         fjs.parentNode.insertBefore(js, fjs);
+       }(document, 'script', 'facebook-jssdk'));
+    </script>
+  </head>
+  <body>
+
+    <script>
+      function checkLoginState() {
+        FB.getLoginStatus(function(response) {
+          div = document.getElementById("loginStatus");
+          div.innerHTML = response.status;
+        });
+      }
+    </script>
+
+    <h1>Facebook</h1><br />
+    <div id="loginStatus">Unknown</div><br />
+
+    <fb:login-button
+      scope="public_profile,email"
+      onlogin="checkLoginState();">
+    </fb:login-button>
+  </body>
+</html>
