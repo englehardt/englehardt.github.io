@@ -1,7 +1,7 @@
 <html>
   <head>
     <script>
-      window.initFacebook(){
+      window.initFacebook = function() {
         FB.init({
           appId      : '421533251633307',
           cookie     : true,
@@ -25,7 +25,7 @@
   <body>
 
     <script>
-      window.checkLoginState() {
+      window.checkLoginState = function() {
         FB.getLoginStatus(function(response) {
           div = document.getElementById("loginStatus");
           div.innerHTML = response.status;
