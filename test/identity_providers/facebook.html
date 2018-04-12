@@ -1,14 +1,6 @@
 <html>
   <head>
     <script>
-      window.initFacebook = function() {
-        FB.init({
-          appId      : '421533251633307',
-          cookie     : true,
-          xfbml      : true,
-          version    : 'v2.12'
-        });
-      }
       //window.fbAsyncInit = function() {
       //  window.initFacebook();
       //};
@@ -25,6 +17,14 @@
   <body>
 
     <script>
+      window.initFacebook = function() {
+        FB.init({
+          appId      : '421533251633307',
+          cookie     : true,
+          xfbml      : true,
+          version    : 'v2.12'
+        });
+      }
       window.checkLoginState = function() {
         FB.getLoginStatus(function(response) {
           div = document.getElementById("loginStatus");
