@@ -1,17 +1,17 @@
 <html>
   <head>
     <script>
-      window.fbAsyncInit = function() {
+      window.initFacebook(){
         FB.init({
           appId      : '421533251633307',
           cookie     : true,
           xfbml      : true,
           version    : 'v2.12'
         });
-
-        FB.AppEvents.logPageView();
-
-      };
+      }
+      //window.fbAsyncInit = function() {
+      //  window.initFacebook();
+      //};
 
       (function(d, s, id){
          var js, fjs = d.getElementsByTagName(s)[0];
@@ -25,13 +25,13 @@
   <body>
 
     <script>
-      function checkLoginState() {
+      window.checkLoginState() {
         FB.getLoginStatus(function(response) {
           div = document.getElementById("loginStatus");
           div.innerHTML = response.status;
         });
       }
-      setTimeout(checkLoginState, 5000);
+      //setTimeout(window.checkLoginState, 5000);
     </script>
 
     <h1>Facebook</h1><br />
