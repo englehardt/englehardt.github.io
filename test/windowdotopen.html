@@ -23,7 +23,7 @@
 
 <button onclick="
   window.open('http://www.example.com', null, 'location');
-  ">location</button>
+  ">location (disabled by default)</button>
 <br />
 
 <button onclick="
@@ -38,7 +38,7 @@
 
 <button onclick="
   window.open('http://www.example.com', null, 'status');
-  ">status</button>
+  ">status (disabled by default)</button>
 <br />
 
 <button onclick="
@@ -50,6 +50,21 @@
   window.open('http://www.example.com', '_blank');
   ">_blank</button>
 <br />
+<button onclick="
+  window.open('http://www.example.com', '_top');
+  ">_top</button>
+<br />
+
+<button onclick="
+  window.open('http://www.example.com', '_self');
+  ">_self</button>
+<br />
+
+<button onclick="
+  window.open('http://www.example.com', '_parent');
+  ">_parent</button>
+<br />
+
 
 </body>
 </html>
