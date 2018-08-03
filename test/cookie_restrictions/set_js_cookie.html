@@ -18,7 +18,7 @@
     var name = getParameterByName("name");
     var value = getParameterByName("value");
     var domain = getParameterByName("domain");
-    if (!!name) {
+    if (!name) {
       document.cookie = 'genericname=genericvalue';
     } else {
       var cookieStr = name+'='+value;
