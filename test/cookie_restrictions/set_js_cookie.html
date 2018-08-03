@@ -22,8 +22,9 @@
       document.cookie = 'genericname=genericvalue';
     } else {
       var cookieStr = name+'='+value;
-      if (domain)
-        cookieStr += ';domain='domain;
+      if (domain) {
+        cookieStr += ';domain='+domain;
+      }
       document.cookie = cookieStr;
     }
   </script>
