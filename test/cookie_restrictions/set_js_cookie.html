@@ -17,7 +17,7 @@
     }
     var name = getParameterByName("name");
     var value = getParameterByName("value");
-    if (name == null or name == '') {
+    if (name == null || name == '') {
       document.cookie = 'genericname=genericvalue';
     } else {
       document.cookie = name+'='+value;
