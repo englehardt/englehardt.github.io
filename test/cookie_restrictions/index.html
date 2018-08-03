@@ -13,6 +13,8 @@
     <img src="http://trackertest.org/cookies/set/homepage/test" alt="Image to set cookie"/> <br />
 
     <button onclick="window.open('popup.html', '_blank', 'location');">same-origin popup</button> <br />
+    <button onclick="window.open('redirect.html', '_blank', 'location');">meta redirect through tracker (s to t to s)</button> <br />
+    <button onclick="window.open('http://trackertest.org/redirect-to?url=https://senglehardt.com/test/cookie_restrictions/popup.html', '_blank', 'location');">HTTP redirect via tracker (t to s)</button> <br />
 
   </body>
 </html>
