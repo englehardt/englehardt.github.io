@@ -6,7 +6,11 @@
     following prefs set:</p>
     <pre>network.dns.localDomains = trackertest.org</pre>
     <pre>privacy.restrict3rdpartystorage.enabled = True</pre>
+    <p>The run <pre>docker run -p 127.0.0.1:80:80 kennethreitz/httpbin</pre> in the
+    terminal to set up a local httpbin.org instance. This instance will handle
+    requests to trackertest.org.</p>
     <p>This tracking domain tries to set a cookie on page load.</p>
     <img src="http://trackertest.org/cookies/set/homepage/test" alt="Image to set cookie"/>
+    <a onclick="window.open('popup.html');">same-origin popup</a>
   </body>
 </html>
