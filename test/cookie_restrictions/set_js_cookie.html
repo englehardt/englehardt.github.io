@@ -17,10 +17,14 @@
     }
     var name = getParameterByName("name");
     var value = getParameterByName("value");
-    if (name == null || name == '') {
+    var domain = getParameterByName("domain");
+    if (!!name) {
       document.cookie = 'genericname=genericvalue';
     } else {
-      document.cookie = name+'='+value;
+      var cookieStr = name+'='+value;
+      if (domain)
+        cookieStr += ';domain='domain;
+      document.cookie = cookieStr;
     }
   </script>
   </body>
