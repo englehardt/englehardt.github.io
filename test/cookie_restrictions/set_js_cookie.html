@@ -2,9 +2,26 @@
   <head>
   </head>
   <body>
-  This page sets a cookie named <pre>js_cookie</pre>.
+  This page sets a cookie based on the query parameters of the url. If no parameters
+  are give the page sets the cookie `genericname=genericvalue`. Use the format:
+  <pre>example.com?name=X&value=Y</pre>
   <script>
-    document.cookie = 'js_cookie=yes';
+    function getParameterByName(name, url) {
+        if (!url) url = window.location.href;
+        name = name.replace(/[\[\]]/g, '\\$&');
+        var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+            results = regex.exec(url);
+        if (!results) return null;
+        if (!results[2]) return '';
+        return decodeURIComponent(results[2].replace(/\+/g, ' '));
+    }
+    var name = getParameterByName("name");
+    var value = getParameterByName("value");
+    if (name == null or name == '') {
+      document.cookie = 'genericname=genericvalue';
+    } else {
+      document.cookie = name+'='+value;
+    }
   </script>
   </body>
 </html>

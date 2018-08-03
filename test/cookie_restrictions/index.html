@@ -26,16 +26,33 @@
     <p> Load a tracking pixel which tries to set of cookie on page load.</p>
     <img src="http://trackertest.org/cookies/set/homepage/test" alt="Image to set cookie"/> <br />
 
-    <h1> Tests </h1>
+    <h1>Tests</h1>
     <p> These tests check a bunch of corner cases. Notation: `n` is a non-tracking domain, `t` is a tracking domain (trackertest.org).</p>
-    <h3> These operations should not result in a tracking cookie </h3>
-    <button onclick="window.open('popup.html', '_blank', 'location,width=300,height=300');">same-origin popup</button><br />
-    <button onclick="window.open('redirect.html', '_blank', 'location,width=300,height=300');">meta redirect through tracker (n to t to n)</button><br />
-    <button onclick="window.open('http://trackertest.org/cookies/set/noopener/true', '_blank', 'noopener,location,width=300,height=300');">window.open to tracker with noopener specified</button><br />
 
-    <h3> These operations should result in a cookie </h3>
-    <button onclick="window.open('http://trackertest.org/redirect-to?url=https://senglehardt.com/test/cookie_restrictions/popup.html', '_blank', 'location,width=300,height=300');">HTTP redirect via tracker (t to s)</button> <br />
-    <button onclick="window.open('https://httpbin.org/redirect-to?url=http://trackertest.org:8080/set_js_cookie.html', '_blank', 'location,width=300,height=300');"></button> <br />
+    <h3>These operations should not allow cookies</h3>
+    <button onclick="window.open('popup.html', '_blank', 'location,width=600,height=500');">
+      same-origin popup
+    </button><br />
+    <button onclick="window.open('redirect.html', '_blank', 'location,width=600,height=500');">
+      meta redirect through tracker (n to t to n)
+    </button><br />
+    <button onclick="window.open('http://trackertest.org/cookies/set/noopener/true', '_blank', 'noopener,location,width=600,height=500');">
+      (noopener) tracker page sets HTTP cookie
+    </button><br />
+    <button onclick="window.open('http://trackertest.org:8080/set_js_cookie.html?name=js_direct_visit_noopener&value=true', '_blank', 'noopener,location,width=600,height=500');">
+      (noopener) tracker page sets JS cookie
+    </button><br />
+    <button onclick="window.open('https://httpbin.org/redirect-to?url=http://trackertest.org:8080/set_js_cookie.html?name=js_after_redirect_noopener&value=true', '_blank', 'noopener,location,width=600,height=500');">
+      (noopener) Redirect from non-tracker to tracker (sets cookie via js).
+    </button><br />
+
+    <h3> These operations should allow cookies</h3>
+    <button onclick="window.open('http://trackertest.org/redirect-to?url=https://senglehardt.com/test/cookie_restrictions/popup.html', '_blank', 'location,width=600,height=500');">
+      HTTP redirect via tracker (t to n)
+    </button><br />
+    <button onclick="window.open('https://httpbin.org/redirect-to?url=http://trackertest.org:8080/set_js_cookie.html?name=js_after_redirect&value=true', '_blank', 'location,width=600,height=500');">
+      set js tracking cookie after redirect (n to t)
+    </button><br />
 
   </body>
 </html>
