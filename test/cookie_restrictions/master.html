@@ -15,6 +15,9 @@
     <p> Load a tracking pixel which tries to set of cookie on page load.</p>
     <img src="http://trackertest.org/cookies/set/homepage/test" alt="Image to set cookie"/> <br />
 
+    <p> Iframe with name `localpageiframe` </p>
+    <iframe src="_blank" name="localpageiframe"></iframe>
+
     <hr>
     <p> These tests check a bunch of corner cases. Notation: `n` is a non-tracking domain, `t` is a tracking domain (trackertest.org).</p>
 
@@ -22,6 +25,9 @@
     <h3>These operations should not allow cookies</h3>
     <button onclick="window.open('popup.html', '_blank', 'location,width=1200,height=900');">
       same-origin popup
+    </button><br />
+    <button onclick="window.open('http://trackertest.org/set_js_cookie.html?name=js_navigation&value=true', 'localpageiframe');">
+      window.open into iframe on the page
     </button><br />
 
     <h1>HTTPBin Tests</h1>
