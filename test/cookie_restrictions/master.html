@@ -6,18 +6,7 @@
     <p>Test page for cookie restrictions. To test you need to have the
     following prefs set:</p>
     <pre>network.dns.localDomains = trackertest.org</pre>
-    <pre>privacy.restrict3rdpartystorage.enabled = True</pre>
-    <p>Then run the following command in the terminal
-    <pre>docker run -p 127.0.0.1:80:80 kennethreitz/httpbin</pre>
-
-    This sets up a local httpbin instance which makes it possible to use
-    httpbin's simple interface to do redirections, set HTTP cookies, etc. For
-    some tests you'll also need to run a local fileserver. To do that run the following
-    <pre>git clone git@github.com:englehardt/englehardt.github.io.git</pre>
-    <pre>cd englehardt.github.io/test/cookie_restrictions/</pre>
-    <pre>python -m SimpleHTTPServer 8080</pre>
-
-    This will serve the test page content on localhost:8080.</p>
+    <pre>network.cookie.cookieBehavior = 4</pre>
 
     <p><b> Note that the about:config prefs set force trackertest.org to resolve to localhost.</b></p>
 
@@ -26,13 +15,20 @@
     <p> Load a tracking pixel which tries to set of cookie on page load.</p>
     <img src="http://trackertest.org/cookies/set/homepage/test" alt="Image to set cookie"/> <br />
 
-    <h1>Tests</h1>
+    <hr>
     <p> These tests check a bunch of corner cases. Notation: `n` is a non-tracking domain, `t` is a tracking domain (trackertest.org).</p>
 
+    <h1>Generic tests</h1>
     <h3>These operations should not allow cookies</h3>
     <button onclick="window.open('popup.html', '_blank', 'location,width=1200,height=900');">
       same-origin popup
     </button><br />
+
+    <h1>HTTPBin Tests</h1>
+    <p>These tests require you to run a local HTTPBin instance</p>
+    <pre>docker run -p 127.0.0.1:80:80 kennethreitz/httpbin</pre>
+
+    <h3>These operations should not allow cookies</h3>
     <button onclick="window.open('redirect.html', '_blank', 'location,width=1200,height=900');">
       meta redirect through tracker (n to t to n)
     </button><br />
@@ -42,17 +38,29 @@
     <button onclick="window.open('http://trackertest.org:8080/set_js_cookie.html?name=js_direct_visit_noopener&value=true', '_blank', 'noopener,location,width=1200,height=900');">
       (noopener) tracker page sets JS cookie
     </button><br />
-    <button onclick="window.open('https://httpbin.org/redirect-to?url=http://trackertest.org:8080/set_js_cookie.html?name=js_after_redirect_noopener&value=true', '_blank', 'noopener,location,width=1200,height=900');">
-      (noopener) Redirect from non-tracker to tracker (sets cookie via js).
-    </button><br />
 
     <h3> These operations should allow cookies</h3>
     <button onclick="window.open('http://trackertest.org/redirect-to?url=https://senglehardt.com/test/cookie_restrictions/popup.html', '_blank', 'location,width=1200,height=900');">
       HTTP redirect via tracker (t to n)
     </button><br />
-    <button onclick="window.open('https://httpbin.org/redirect-to?url=http://trackertest.org:8080/set_js_cookie.html?name=js_after_redirect&value=true', '_blank', 'location,width=1200,height=900');">
-      set js tracking cookie after redirect (n to t)
+
+    <h1>Local Server Tests</h1>
+    <p>For these tests you need to run a local fileserver.</p>
+    <pre>git clone git@github.com:englehardt/englehardt.github.io.git</pre>
+    <pre>cd englehardt.github.io/test/cookie_restrictions/</pre>
+    <pre>python -m SimpleHTTPServer 80</pre>
+    <p>This will serve the test page content on localhost.</p>
+
+    <h3>These operations should not allow cookies</h3>
+    <button onclick="window.open('https://httpbin.org/redirect-to?url=http://trackertest.org/set_js_cookie.html?name=js_after_redirect_noopener&value=true', '_blank', 'noopener,location,width=1200,height=900');">
+      (noopener) Redirect from non-tracker to tracker (sets cookie via js).
     </button><br />
+
+    <h3> These operations should allow cookies</h3>
+    <button onclick="window.open('https://httpbin.org/redirect-to?url=http://trackertest.org/set_js_cookie.html?name=js_after_redirect&value=true', '_blank', 'location,width=1200,height=900');">
+      set js tracking cookie after redirect (n to t, after click)
+    </button><br />
+
 
   </body>
 </html>
