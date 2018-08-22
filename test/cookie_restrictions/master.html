@@ -55,6 +55,10 @@
     <button onclick="window.open('https://httpbin.org/redirect-to?url=http://trackertest.org/set_js_cookie.html?name=js_after_redirect_noopener&value=true', '_blank', 'noopener,location,width=1200,height=900');">
       (noopener) Redirect from non-tracker to tracker (sets cookie via js).
     </button><br />
+    <a href="http://trackertest.org/set_js_cookie.html?name=js_from_achor&value=true" target="_blank">
+      anchor tag to tracker setting js cookie</a><br />
+    <a href="http://trackertest.org/set_js_cookie.html?name=js_from_achor&value=true" target="_blank" rel="noopener">
+      (noopener) anchor tag to tracker setting js cookie</a><br />
 
     <h3> These operations should allow cookies</h3>
     <button onclick="window.open('https://httpbin.org/redirect-to?url=http://trackertest.org/set_js_cookie.html?name=js_after_redirect&value=true', '_blank', 'location,width=1200,height=900');">
