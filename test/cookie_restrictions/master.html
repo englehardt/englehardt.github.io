@@ -16,7 +16,9 @@
     <img src="http://trackertest.org/cookies/set/homepage/test" alt="Image to set cookie"/> <br />
 
     <p> Iframe with name `localpageiframe` </p>
-    <iframe src="_blank" name="localpageiframe"></iframe>
+    <div id="container" style="border:0;margin:0;position:absolute;width:5px;height:5px;overflow:hidden;cursor:pointer;opacity:0.01">
+      <iframe src="about:blank" name="localpageiframe"></iframe>
+    </div>
 
     <hr>
     <p> These tests check a bunch of corner cases. Notation: `n` is a non-tracking domain, `t` is a tracking domain (trackertest.org).</p>
@@ -26,8 +28,11 @@
     <button onclick="window.open('popup.html', '_blank', 'location,width=1200,height=900');">
       same-origin popup
     </button><br />
-    <button onclick="window.open('http://trackertest.org/set_js_cookie.html?name=js_iframe&value=true', 'localpageiframe');">
-      window.open into iframe on the page
+    <button onclick='
+      window.open("http://trackertest.org/set_js_cookie.html?name=js_iframe&value=true", "localpageiframe");
+      var container = document.getElementById("container");
+      container.setAttribute("style", "border:0;margin:0;position:absolute;width:5px;height:5px;overflow:hidden;cursor:pointer;opacity:0.01;left:" + e.x + ";top:" + e.y);'>
+      window.open into iframe on the page (click anywhere on the page after to clickjack)
     </button><br />
 
     <h1>HTTPBin Tests</h1>
