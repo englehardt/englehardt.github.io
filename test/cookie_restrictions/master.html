@@ -5,15 +5,18 @@
     <h1> Test setup </h1>
     <p>Test page for cookie restrictions. To test you need to have the
     following prefs set:</p>
-    <pre>network.dns.localDomains = trackertest.org, example.com</pre>
+    <pre>network.dns.localDomains = nottracking.trackertest.org, trackertest.org, example.com</pre>
     <pre>network.cookie.cookieBehavior = 4</pre>
 
     <p><b> Note that the about:config prefs set force trackertest.org to resolve to localhost.</b></p>
 
     <h1> Tracking pixel </h1>
 
-    <p> Load a tracking pixel which tries to set of cookie on page load.</p>
-    <img src="http://trackertest.org/cookies/set/homepage/test" alt="Image to set cookie"/> <br />
+    <p> Load a tracking pixel to check for cookie headers.</p>
+    <img src="http://trackertest.org/cookies/set/homepage/test" alt="trackertest.org"/><br />
+
+    <p> Load a pixel from the nontracking subdomain to check for cookie headers.</p>
+    <img src="http://nottracking.trackertest.org/cookies/set/homepage/test" alt="nottracking.trackertest.org"/><br />
 
     <p> Embed a tracking iframe which sets a cookie upon user interaction (cookie should not be set).</p>
     <iframe src="http://trackertest.org/clickjack.html" height=50 width=200></iframe> <br />
@@ -77,6 +80,21 @@
     '>
       window.open into iframe on the page
     </button><div id='clickjack'></div><br />
+    <button onclick="window.setTimeout(() =>
+      window.open('http://trackertest.org/set_js_cookie.html?name=setTimeout',
+                  '_blank', 'location,width=1200,height=900'),
+      2000);">
+      set tracking cookie via js using setTimeout
+    </button><br />
+    <button onclick="window.open('https://httpbin.org/redirect-to?url=http://trackertest.org/selfinteraction.html', '_blank', 'location,width=1200,height=900');">
+      set tracking cookie via js after redirect (n to t, automated interaction)
+    </button><br />
+    <button onclick="window.open('https://httpbin.org/redirect-to?url=http://nottracking.trackertest.org/set_js_cookie.html?name=js_subdomain_redirect', '_blank', 'location,width=1200,height=900');">
+      Redirect from non-tracker to subdomain of tracker (sets cookie via js).
+    </button><br />
+    <button onclick="window.open('http://nottracking.trackertest.org/set_js_cookie.html?name=js_subdomain_direct', '_blank', 'location,width=1200,height=900');">
+      window.open to subdomain of tracker (sets cookie via js).
+    </button><br />
 
     <h3> These operations should allow cookies</h3>
     <button onclick="window.open('https://httpbin.org/redirect-to?url=http://trackertest.org/set_js_cookie.html?name=js_after_redirect&value=true', '_blank', 'location,width=1200,height=900');">

@@ -1,0 +1,17 @@
+<html>
+  <head>
+  </head>
+  <body>
+    <div id="blah">
+      <button id="bttn" onclick="var div=document.getElementById('blah'); div.innerHTML = 'Thanks for the access!'; document.cookie = 'selfinteraction=true';">
+        Now Click Me
+      </button>
+    </div>
+  <script>
+    window.setTimeout(function() {
+      var bttn = document.getElementById("bttn");
+      bttn.click();
+    }, 1000);
+  </script>
+  </body>
+</html>
