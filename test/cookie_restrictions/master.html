@@ -5,7 +5,7 @@
     <h1> Test setup </h1>
     <p>Test page for cookie restrictions. To test you need to have the
     following prefs set:</p>
-    <pre>network.dns.localDomains = nottracking.trackertest.org, trackertest.org, example.com</pre>
+    <pre>network.dns.localDomains = definitely.nottracking.trackertest.org, nottracking.trackertest.org, trackertest.org, example.com</pre>
     <pre>network.cookie.cookieBehavior = 4</pre>
 
     <p><b> Note that the about:config prefs set force trackertest.org to resolve to localhost.</b></p>
@@ -101,6 +101,8 @@
     <button onclick="window.open('http://definitely.nottracking.trackertest.org/set_js_cookie.html?name=js_double_subdomain_direct', '_blank', 'location,width=1200,height=900');">
       window.open to definitely.nottracking.trackertest.org (sets cookie via js).
     </button><br />
+    <a href="http://example.com/navigate.html" target="_blank">
+      anchor tag to a non-tracker where you can navigate to a tracker (activated after interaction on final page)</a><br />
 
     <h3> These operations should allow cookies</h3>
     <button onclick="window.open('https://httpbin.org/redirect-to?url=http://trackertest.org/set_js_cookie.html?name=js_after_redirect&value=true', '_blank', 'location,width=1200,height=900');">
