@@ -18,6 +18,9 @@
     <p> Load a pixel from the nontracking subdomain to check for cookie headers.</p>
     <img src="http://nottracking.trackertest.org/cookies/set/homepage/test" alt="nottracking.trackertest.org"/><br />
 
+    <p> Load a pixel from the definitely.nontracking subdomain to check for cookie headers.</p>
+    <img src="http://definitely.nottracking.trackertest.org/cookies/set/homepage/test" alt="definitely.nottracking.trackertest.org"/><br />
+
     <p> Embed a tracking iframe which sets a cookie upon user interaction (cookie should not be set).</p>
     <iframe src="http://trackertest.org/clickjack.html" height=50 width=200></iframe> <br />
 
@@ -93,7 +96,10 @@
       Redirect from non-tracker to subdomain of tracker (sets cookie via js).
     </button><br />
     <button onclick="window.open('http://nottracking.trackertest.org/set_js_cookie.html?name=js_subdomain_direct', '_blank', 'location,width=1200,height=900');">
-      window.open to subdomain of tracker (sets cookie via js).
+      window.open to nottracking.trackertest.org (sets cookie via js).
+    </button><br />
+    <button onclick="window.open('http://definitely.nottracking.trackertest.org/set_js_cookie.html?name=js_double_subdomain_direct', '_blank', 'location,width=1200,height=900');">
+      window.open to definitely.nottracking.trackertest.org (sets cookie via js).
     </button><br />
 
     <h3> These operations should allow cookies</h3>
