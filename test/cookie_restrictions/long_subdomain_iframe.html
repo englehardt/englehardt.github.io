@@ -1,0 +1,14 @@
+<html>
+  <head>
+  </head>
+  <body>
+    <p>This page includes an iframe from trackertest.org that tries to get and set cookies.
+    If it is allowed storage access the get and set should work and you should
+    see the value twice. If not, you'll only see the value generated for the
+    set.</p>
+    <p>The real trackertest.org does not host an iframe at such a long subdomain.
+    This test page expects you to have set `network.dns.localDomains = a.b.c.d.e.f.g.h.trackertest.org`
+    and to be serving the iframe locally (https://github.com/mozilla/trackertest/blob/master/set_cookie.html)</p>
+    <iframe src="https://a.b.c.d.e.f.g.h.trackertest.org/set_cookie.html" width=500 height=500></iframe>
+  </body>
+</html>
