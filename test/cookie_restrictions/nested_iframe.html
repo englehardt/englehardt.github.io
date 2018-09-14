@@ -1,0 +1,23 @@
+<html>
+  <head>
+  </head>
+  <body>
+    <p>This page is meant to be a local test page. It loads an iframe from
+    `example.org` that includes a pixel from trackertest.org. It also loads
+    an iframe from example.net that includes a nested iframe from trackertest.org.
+    For these tests to run correctly you should be serving these files locally
+    and have the following prefs set:
+    `network.dns.localDomain = example.com, example.org, example.net, trackertest.org`</p>
+    <p>iframe from example.org</p>
+    <iframe src="http://example.org/embedded_tracker_image.html" width=500 height=500></iframe><br />
+    <p>iframe from example.net</p>
+    <iframe src="http://example.net/embedded_tracker_iframe.html" width=500 height=500></iframe><br />
+    <p>iframe from example.com (same origin)</p>
+    <iframe src="http://example.net/embedded_tracker_iframe.html" width=500 height=500></iframe><br />
+    <p>iframe from trackertest.org</p>
+    <iframe src="http://trackertest.org/set_cookie_and_embed_iframe.html" width=500 height=500></iframe><br />
+    <button onclick="window.open('http://trackertest.org/set_js_cookie.html?name=js_direct_window_open', '_blank', 'location,width=1200,height=900');">
+      set tracking cookie via js direct window.open
+    </button><br />
+  </body>
+</html>
