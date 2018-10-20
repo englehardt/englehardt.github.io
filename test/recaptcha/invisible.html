@@ -3,7 +3,10 @@
     <script src='https://www.google.com/recaptcha/api.js'></script>
   </head>
   <body>
-    <p>This page is verified by the "invisible" Google reCAPTCHA.</p>
+    <p>This page is verified by the "invisible" Google reCAPTCHA. Fill out the
+    form and hit submit. The captcha is triggered on submit. You should see
+    "Form submitted!" in the console once you solve the captcha (if one is
+    shown).</p>
     <script>
       function onSubmitFn() {
         console.log("Form submitted!");
