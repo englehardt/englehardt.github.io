@@ -1,0 +1,18 @@
+<html lang="en">
+  <head>
+    <meta name="google-signin-scope" content="profile email">
+    <meta name="google-signin-clientid" content="902141776049-sjne3e0c48hsej7fuf71lgkq2bis8i7g.apps.googleusercontent.com">
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+  </head>
+  <body>
+    <div>
+      <button id='signinButton'>Sign in with Google Plus</button>
+    </div>
+    <script>
+      var signinButton = document.getElementById('signinButton');
+      signinButton.addEventListener('click', function() {
+        gapi.auth.signIn();
+      });
+    </script>
+  </body>
+</html>
