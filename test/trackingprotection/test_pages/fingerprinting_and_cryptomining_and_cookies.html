@@ -16,7 +16,11 @@
     <p>Cookie restrictions (base-track-digest256 and content-track-digest256):</p>
     <iframe height=0 width=0 src="https://base-track-digest256.dummytracker.org/cookie_access_test.html"></iframe>
     <iframe height=0 width=0 src="https://content-track-digest256.dummytracker.org/cookie_access_test.html"></iframe>
-    <p>Basic List: <pre id="base-track-digest256"></pre></p>
+    <p>Basic List<br />
+    * Advertising: <pre id="ads-track-digest256"></pre><br />
+    * Analytics: <pre id="analytics-track-digest256"></pre><br />
+    * Social: <pre id="social-track-digest256"></pre>
+    </p>
     <p>Stict List: <pre id="content-track-digest256"></pre></p>
     <script>
       function updateCookieStatus(statusMessage, list) {
@@ -31,7 +35,9 @@
       }
       window.addEventListener("message", event => {
         lists = [
-          'base-track-digest256',
+          'ads-track-digest256',
+          'analytics-track-digest256',
+          'social-track-digest256',
           'content-track-digest256'
         ];
         lists.forEach(list => {
