@@ -18,13 +18,13 @@
         // Add favicon from tracker
         var container = document.getElementById("favicons");
         var tag = document.createElement("img");
-        tag.src = 'http://'+tracker+'favicon.ico';
+        tag.src = 'http://'+tracker+'/favicon.ico';
         container.appendChild(tag);
       });
     }
     var req = new XMLHttpRequest();
     req.addEventListener("load", addTrackers);
-    req.open("GET", "2019-04-18_origin_hash_list.json");
+    req.open("GET", "2019-04-18_origin_hash_list.json", true);
     req.send();
   </script>
   </body>
