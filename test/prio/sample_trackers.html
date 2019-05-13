@@ -4,6 +4,7 @@
   <body>
     <h1>Includes resources from all trackers on the tracking protection list</h1>
     <p>Number of tracking resources embedded:<pre id="count">0</pre></p>
+    <pre id="domains"></pre>
     <div id="favicons"></div>
   <script>
     // From: https://stackoverflow.com/a/19270021
@@ -29,6 +30,10 @@
         var count = parseInt(countNode.innerHTML, 10);
         count = count + 1;
         countNode.innerHTML = count;
+
+        // Add domain name to list
+        var domainsNode = document.getElementById("domains");
+        domainsNode.innerHTML = domainsNode.innerHTML + '\n' + tracker;
 
         // Add favicon from tracker
         var container = document.getElementById("favicons");
