@@ -5,7 +5,7 @@
     <h1>Includes resources from all trackers on the tracking protection list</h1>
     <p>Number of tracking resources embedded:<pre id="count">0</pre></p>
     <pre id="domains"></pre>
-    <div id="iframes"></div>
+    <div id="favicons"></div>
   <script>
     // From: https://stackoverflow.com/a/19270021
     function getRandom(arr, n) {
@@ -36,8 +36,8 @@
         domainsNode.innerHTML = domainsNode.innerHTML + '\n' + tracker;
 
         // Add iframe from tracker
-        var container = document.getElementById("iframes");
-        var tag = document.createElement("iframe");
+        var container = document.getElementById("favicons");
+        var tag = document.createElement("img");
         tag.src = 'http://'+tracker+'/favicon.ico';
         container.appendChild(tag);
       });
