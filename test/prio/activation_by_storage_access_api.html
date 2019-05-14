@@ -2,11 +2,10 @@
   <head>
   </head>
   <body>
-    <h1>A test page for Firefox Origin Telemetry content blocking measurements</h1>
-    <a href="all_trackers.html">All Trackers</a>
-    <a href="some_trackers.html">Some Trackers</a>
-    <a href="test_tracker.html">Only test trackers (those from dummytracker.org</a>
-    <a href="activation_by_heuristic.html">Activation by heuristic</a>
-    <a href="activation_by_storage_access_api.html">Activation by Storage Access API</a>
+    <p>A simple page that embeds two tracking iframes that try to access storage
+    and include buttons to interact with the Storage Access API.</p>
+    <br />
+    <iframe width=500 height=1000 src="https://trackertest.org/storage_access_api.html"></iframe>
+    <p> Access denied? Try <a rel=noopener target=_blank href="https://trackertest.org/index.html">interacting with the tracker first</a>. Note that this link <b>does not</b> have an opener relationship, so it shouldn't lead to storage activation by heuristic.</p>
   </body>
 </html>
