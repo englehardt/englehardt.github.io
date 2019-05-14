@@ -3,12 +3,12 @@
   </head>
   <body>
     <h1>Step 1: Interact with the links below to grant heuristic exceptions to the domains listed.</h1>
-    <a href="https://ads-track-digest256.dummytracker.org/" target="_blank" rel="noopener">Open and interact with the page (no opener access, but prior interaction with origin needed for window.open test below)</a>
-    <button onclick="window.open('https://ads-track-digest256.dummytracker.org/', '_blank', 'location,width=1200,height=900');">
+    <a href="http://questionmarket.com:8080/blank.html" target="_blank" rel="noopener">Open and interact with the page (no opener access, but prior interaction with origin needed for window.open test below)</a><br />
+    <button onclick="window.open('http://questionmarket.com:8080/blank.html', '_blank', 'location,width=1200,height=900');">
       popup via window.open with opener access (should grant on click)
     </button><br />
-    <a href="https://content-track-digest256.dummytracker.org/" target="_blank">
-      anchor tag popup with opener access (should grant on interaction with resulting page)
+    <a href="http://3lift.com:8080/blank.html" target="_blank">
+      anchor tag popup with opener access (should grant on interaction with resulting page) -- disabled in Nightly
       <a><br />
 
     <h1>Step 2: Visit the page below to load the (now unblocked) trackers</h1>
