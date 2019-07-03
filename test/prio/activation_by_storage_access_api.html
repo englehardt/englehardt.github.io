@@ -2,10 +2,19 @@
   <head>
   </head>
   <body>
-    <p>A simple page that embeds two tracking iframes that try to access storage
+    <p>A simple page that embeds a tracking iframe that tries to access storage
     and include buttons to interact with the Storage Access API.</p>
     <br />
-    <iframe width=500 height=1000 src="https://trackertest.org/storage_access_api.html"></iframe>
-    <p> Access denied? Try <a rel=noopener target=_blank href="https://trackertest.org/index.html">interacting with the tracker first</a>. Note that this link <b>does not</b> have an opener relationship, so it shouldn't lead to storage activation by heuristic.</p>
+    <p>aim.com</p>
+    <iframe width=500 height=1000 src="http://aim.com:8080/storage_access_api.html"></iframe>
+    <br /><p>dapper.net</p>
+    <iframe width=500 height=1000 src="http://dapper.net:8080/storage_access_api.html"></iframe>
+    <br /><p>buzzlogic.com</p>
+    <iframe width=500 height=1000 src="http://buzzlogic.com:8080/storage_access_api.html"></iframe>
+    <p> Access denied? Try <a rel=noopener target=_blank href="http://aim.com:8080/blank.html">interacting with the tracker first</a>. Note that this link <b>does not</b> have an opener relationship, so it shouldn't lead to storage activation by heuristic.</p>
+    <br />
+    <p> Access denied? Try <a rel=noopener target=_blank href="http://dapper.net:8080/blank.html">interacting with the tracker first</a>. Note that this link <b>does not</b> have an opener relationship, so it shouldn't lead to storage activation by heuristic.</p>
+    <br />
+    <p> Access denied? Try <a rel=noopener target=_blank href="http://buzzlogic.com:8080/blank.html">interacting with the tracker first</a>. Note that this link <b>does not</b> have an opener relationship, so it shouldn't lead to storage activation by heuristic.</p>
   </body>
 </html>
