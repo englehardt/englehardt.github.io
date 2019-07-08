@@ -8,30 +8,32 @@
     <h1>Tracker Blocking (i.e., resource blocking)</h1>
     <p>Test will say "Blocked" if Firefox is blocking resources from that list.</p>
     <br />
-    <h3>Level 1 (Basic List) Tracker Blocking</h3>
+    <h3>Level 1 (Basic) List -- Combined</h3>
     <p>Level 1 Tracker blocking with combined list (base-track-digest256)</p>
+    <p>base-track-digest256:</p>
     <img
        src="https://base-track-digest256.dummytracker.org/test_not_blocked.png"
        onerror="this.onerror=null;this.src='https://not-a-tracker.dummytracker.org/test_blocked.png'">
     <br/>
+    <h3>Level 1 (Basic) List -- Separate</h3>
     <p>Level 1 Tracker blocking with separate lists (social-track-digest256,ads-track-digest256,analytics-track-digest256).
-    <pre>social-track-digest256</pre>
+    <p>social-track-digest256:</p>
     <img
        src="https://social-track-digest256.dummytracker.org/test_not_blocked.png"
        onerror="this.onerror=null;this.src='https://not-a-tracker.dummytracker.org/test_blocked.png'">
     <br/>
-    <pre>ads-track-digest256</pre>
+    <p>ads-track-digest256:</p>
     <img
        src="https://ads-track-digest256.dummytracker.org/test_not_blocked.png"
        onerror="this.onerror=null;this.src='https://not-a-tracker.dummytracker.org/test_blocked.png'">
     <br/>
-    <pre>analytics-track-digest256</pre>
+    <p>analytics-track-digest256:</p>
     <img
        src="https://analytics-track-digest256.dummytracker.org/test_not_blocked.png"
        onerror="this.onerror=null;this.src='https://not-a-tracker.dummytracker.org/test_blocked.png'">
     <br/>
     <h3>Level 2 (Strict List) Tracker Blocking</h3>
-    <pre>content-track-digest256</pre>
+    <p>content-track-digest256:</p>
     <img
        src="https://content-track-digest256.dummytracker.org/test_not_blocked.png"
        onerror="this.onerror=null;this.src='https://not-a-tracker.dummytracker.org/test_blocked.png'">
