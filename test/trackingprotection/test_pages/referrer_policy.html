@@ -1,0 +1,37 @@
+<html>
+  <head>
+  </head>
+  <body>
+    <p>This page embeds several "tracking" iframes that display the referrer
+    accessible through `document.referrer`. Each iframe has a different inline
+    Referrer policy set. See the <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Referrer-Policy">The Referrer-Policy MDN page</a>
+    for more info.</p>
+
+    <h3>No explicit policy</h3>
+    <iframe src='https://englehardt-tracker.com/get_referrer.html'></iframe>
+
+    <h3>no-referrer</h3>
+    <iframe referrerpolicy="no-referrer" src='https://englehardt-tracker.com/get_referrer.html'></iframe>
+
+    <h3>no-referrer-when-downgrade</h3>
+    <iframe referrerpolicy="no-referrer-when-downgrade" src='https://englehardt-tracker.com/get_referrer.html'></iframe>
+
+    <h3>origin</h3>
+    <iframe referrerpolicy="origin" src='https://englehardt-tracker.com/get_referrer.html'></iframe>
+
+    <h3>origin-when-cross-origin</h3>
+    <iframe referrerpolicy="origin-when-cross-origin" src='https://englehardt-tracker.com/get_referrer.html'></iframe>
+
+    <h3>same-origin</h3>
+    <iframe referrerpolicy="same-origin" src='https://englehardt-tracker.com/get_referrer.html'></iframe>
+
+    <h3>strict-origin</h3>
+    <iframe referrerpolicy="strict-origin" src='https://englehardt-tracker.com/get_referrer.html'></iframe>
+
+    <h3>strict-origin-when-cross-origin</h3>
+    <iframe referrerpolicy="strict-origin-when-cross-origin" src='https://englehardt-tracker.com/get_referrer.html'></iframe>
+
+    <h3>unsafe-url</h3>
+    <iframe referrerpolicy="unsafe-url" src='https://englehardt-tracker.com/get_referrer.html'></iframe>
+  </body>
+</html>
