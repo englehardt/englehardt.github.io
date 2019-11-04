@@ -1,0 +1,61 @@
+<html>
+  <head>
+  </head>
+  <body>
+    <p>This page embeds "non-tracking" and "tracking" iframes that display the referrer
+    accessible through `document.referrer`. Check that when `fbclid` query param is
+    present on the current url:
+      <ul>
+        <li>the referrer is trimmed to the origin when fbclid is present in the current page</li>
+      </ul>
+    </p>
+
+    <h3>No explicit referrer policy</h3>
+    <h5>Non-tracker (englehardt-tracker.com)</h5>
+    <ul>
+      <li>What to expect: the referrer is <b>trimmed</b> to the origin because fbclid is present in the current page</li>
+    </ul>
+    <div>
+      <img id='non_tracker_result'></img>
+    </div>
+    <iframe width=1000 src='https://englehardt-tracker.com/get_referrer.html'></iframe>
+    <h5>Tracker (trackertest.org)</h5>
+    <ul>
+      <li>What to expect: the referrer is <b>trimmed</b> to the origin because fbclid is present in the current page</li>
+    </ul>
+    <div>
+      <img id='tracker_result'></img>
+    </div>
+    <iframe width=1000 src='https://trackertest.org/get_referrer.html'></iframe>
+    <script>
+      function checkReferrerTrimmed(actualURL) {
+        var expectedURL = document.URL;
+        console.log(actualURL);
+        var imgSrc = "trimmed.png";
+        if (actualURL === expectedURL){
+          imgSrc = "not_trimmed.png";
+        }
+        return imgSrc;
+      }
+      function receiveMessage(event) {
+        // check to see that the message is from the expected sender
+        if (event.origin === "http://0.0.0.0:8000") {
+          // sender is tracker
+          var actualURL = event.data;
+          var imgSrc = checkReferrerTrimmed(actualURL);
+          var img = document.getElementById("tracker_result");
+          img.src = imgSrc;
+        } else if (event.origin === "http://0.0.0.0:8090") {
+          // sender is non-tracker
+          var actualURL = event.data;
+          var imgSrc = checkReferrerTrimmed(actualURL);
+          var img = document.getElementById("non_tracker_result");
+          img.src = imgSrc;
+        } else {
+          return;
+        }
+      }
+      window.addEventListener("message", receiveMessage, false);
+    </script>
+  </body>
+</html>
