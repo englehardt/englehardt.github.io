@@ -2,10 +2,10 @@
   <head>
   </head>
   <body>
+    <p>STP uses the following lists: (social-tracking-protection-facebook-digest256, social-tracking-protection-linkedin-digest256, social-tracking-protection-twitter-digest256). We have to check each of these individually, but if the feature is working correctly all three should be blocked (or not blocked) depending on which configuration you're testing.</p>
+
     <h1>Tracker Blocking (i.e., resource blocking)</h1>
     <p>Test will say "Blocked" if Firefox is blocking resources from that list.</p>
-
-    <p>STP uses the following lists (social-tracking-protection-facebook-digest256, social-tracking-protection-linkedin-digest256, social-tracking-protection-twitter-digest256). We can check each of these separately</p>
     <p>social-tracking-protection-facebook-digest256:</p>
     <img
        src="https://social-tracking-protection-facebook-digest256.dummytracker.org/test_not_blocked.png"
@@ -23,19 +23,16 @@
     <br/>
 
 
-
     <h1>Cookie blocking</h1>
     <b>NOTE: If tracker blocking is enabled for STP domains, these tests will not work properly.</b>
     <iframe height=0 width=0 src="https://social-tracking-protection-facebook-digest256.dummytracker.org/cookie_access_test.html"></iframe>
     <iframe height=0 width=0 src="https://social-tracking-protection-linkedin-digest256.dummytracker.org/cookie_access_test.html"></iframe>
     <iframe height=0 width=0 src="https://social-tracking-protection-twitter-digest256.dummytracker.org/cookie_access_test.html"></iframe>
 
-    <p><h3>Level 1 (Basic) List</h3>
+    <p><h3>Social Tracking Protection Lists</h3>
     * Facebook - `social-tracking-protection-facebook-digest256`: <pre id="social-tracking-protection-facebook-digest256"></pre>
     * LinkedIn - `social-tracking-protection-linkedin-digest256`: <pre id="social-tracking-protection-linkedin-digest256"></pre>
     * Twitter - `social-tracking-protection-twitter-digest256`: <pre id="social-tracking-protection-twitter-digest256"></pre>
-    * Analytics - `analytics-track-digest256`: <pre id="analytics-track-digest256"></pre>
-    * Social - `social-track-digest256`: <pre id="social-track-digest256"></pre>
     </p>
 
     <script>
