@@ -1,0 +1,33 @@
+<html>
+  <head>
+  </head>
+  <body>
+    <b>NOTE: If tracker blocking is enabled, these tests might not run</b>
+    <iframe height=0 width=0 src="https://pocket-etp-study.dummytracker.org/cookie_access_test.html"></iframe>
+    <p><h3>Level 1 (Basic) List</h3>
+    * ETP study test domain: <pre id="pocket-etp-study">UNKNOWN</pre>
+    </p>
+    <script>
+      function updateCookieStatus(statusMessage, list) {
+          var output = document.getElementById(list);
+          if (statusMessage === 'cookies') {
+            output.innerHTML = "Cookies not blocked";
+          } else if (statusMessage === 'no_cookies') {
+            output.innerHTML = "Cookies BLOCKED";
+          } else {
+            output.innerHTML = "Unrecognized status";
+          }
+      }
+      window.addEventListener("message", event => {
+        lists = [
+          'pocket-etp-study'
+        ];
+        lists.forEach(list => {
+          if (event.origin === `https://${list}.dummytracker.org`) {
+            updateCookieStatus(event.data, list);
+          }
+        });
+      }, false);
+    </script>
+  </body>
+</html>
