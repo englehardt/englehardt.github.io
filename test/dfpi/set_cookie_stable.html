@@ -17,7 +17,7 @@
           var randVal = Math.random();
           var set = document.getElementById('cookie_set');
           set.innerHTML = randVal;
-          document.cookie = 'testPageCookie='+randVal;
+          document.cookie = 'testPageCookie='+randVal+'; sameSite=None; Secure';
 
           // Get a cookie
           cookies = document.cookie;
