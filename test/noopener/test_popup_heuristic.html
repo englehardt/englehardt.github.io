@@ -1,0 +1,19 @@
+<html>
+  <head>
+  </head>
+  <body>
+    <p>Cookies should be blocked from both embedded origins by default. Then,
+    the pop-up interaction heuristic should grant access only when there is
+    an opener in the pop-up. In this case, that should only happen to the ads-
+    origin.</p>
+    <h3>link to ads-track-digest256.dummytracker.org</h3>
+    <a href="https://ads-track-digest256.dummytracker.org/index.html" target="_blank">Click me (anchor tag, target=_blank)</a>
+    <h3>link to analytics-track-digest256.dummytracker.org</h3>
+    <a href="https://analytics-track-digest256.dummytracker.org/index.html" target="_blank" rel="noopener">Click me (anchor tag, target=_blank, rel=noopener)</a>
+    <br />
+    <br />
+    <iframe src="https://ads-track-digest256.dummytracker.org/set_cookie.html" height=250 width=500></iframe>
+    <br />
+    <iframe src="https://analytics-track-digest256.dummytracker.org/set_cookie.html" height=250 width=500></iframe>
+  </body>
+</html>
