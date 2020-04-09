@@ -17,24 +17,27 @@
   <body>
     <div class="row">
       <div class="column">
-        <h3>(senglehardt.com) same-site, same-origin iframe</h3>
+        <h3>senglehardt.com</h3>
+        <h4>same-site, same-origin iframe</h4>
         <iframe width=500 height=500 src="set_cookie_stable.html"></iframe>
       </div>
       <div class="column">
-        <h3>(test.senglehardt.com) same-site, cross-origin iframe</h3>
+        <h3>test.senglehardt.com</h3>
+        <h4>same-site, cross-origin iframe</h4>
         <iframe width=500 height=500 src="https://test.senglehardt.com/test/dfpi/set_cookie_stable.html"></iframe>
       </div>
       <div class="column">
-        <h3>(englehardt-tracker.com) different site, cross-origin iframe</h3>
+        <h3>englehardt-tracker.com</h3>
+        <h4>different site, cross-origin iframe</h4>
         <iframe width=500 height=500 src="https://englehardt-tracker.com/set_storage_stable.html"></iframe>
+        <p>Click
+        <button onclick="window.open('https://englehardt-tracker.com/index.html', '_blank', 'location,width=1200,height=900');">
+          here
+        </button>
+        to activate the window.open heuristic and relax storage isolation for
+        englehardt-tracker.com.
+        </p>
       </div>
     </div>
-
-    <p>Click
-    <button onclick="window.open('https://englehardt-tracker.com/index.html', '_blank', 'location,width=1200,height=900');">
-      here
-    </button>
-    to activate the window.open heuristic and relax storage isolation.
-    </p>
   </body>
 </html>
