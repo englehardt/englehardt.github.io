@@ -25,11 +25,18 @@
         <h3>test.senglehardt.com</h3>
         <h4>same-site, cross-origin iframe</h4>
         <iframe width=500 height=1000 src="https://test.senglehardt.com/test/dfpi/set_storage_with_sa_api.html"></iframe>
+        <p> Access denied? Try <a rel=noopener target=_blank href="https://test.senglehardt.com/index.html">interacting with the third-party first</a>.
+        Note that this link <b>does not</b> have an opener relationship, so it shouldn't lead to storage activation by heuristic.</p>
       </div>
       <div class="column">
         <h3>englehardt-tracker.com</h3>
         <h4>different site, cross-origin iframe</h4>
         <iframe width=500 height=1000 src="https://englehardt-tracker.com/set_storage_stable.html"></iframe>
+
+        <p> Access denied? Try <a rel=noopener target=_blank href="https://englehardt-tracker.com/index.html">interacting with the third-party first</a>.
+        Note that this link <b>does not</b> have an opener relationship, so it shouldn't lead to storage activation by heuristic.</p>
+        <br />
+
         <p>Click
         <button onclick="window.open('https://englehardt-tracker.com/index.html', '_blank', 'location,width=1200,height=900');">
           here

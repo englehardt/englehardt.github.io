@@ -31,8 +31,10 @@
       <!-- Storage access API -->
       <br /><br />
       <h4>Storage Access API</h4>
-      <button onclick="document.requestStorageAccess();">requestStorageAccess()</button><br />
-      <button onclick="hasStorageAccess();">hasStorageAccess()</button><pre id="has_storage_access"></pre>
+      <button onclick='requestSA()'>requestStorageAccess()</button><br />
+      <p>Return value of requestStorageAccess():</p><pre id='request_storage_access'>not yet called</pre><br />
+      <button onclick='hasSA()'>hasStorageAccess()</button><br />
+      <p>Return value of hasStorageAccess():</p><pre id='has_storage_access'>not yet called</pre><br />
 
 
       <script>
@@ -151,11 +153,22 @@
         setAllStorageLocations(false);
 
         // Storage Access API
-        async function hasStorageAccess() {
-          var output = document.getElementById('has_storage_access');
-          output.innerHTML = await document.hasStorageAccess();
+        function requestSA() {
+          var result = document.getElementById('request_storage_access');
+          document.requestStorageAccess().then(
+            () => {result.innerHTML = 'access granted'},
+            () => {result.innerHTML = 'access denied'}
+          );
         }
-        hasStorageAccess();
+
+        function hasSA() {
+          var result = document.getElementById('has_storage_access');
+          document.hasStorageAccess().then(
+            (hasAccess) => {result.innerHTML = hasAccess},
+            (reason) => {result.innerHTML = 'promise rejected for reason' + reason}
+          );
+          hasSA();
+        }
       </script>
     </body>
 </html>
