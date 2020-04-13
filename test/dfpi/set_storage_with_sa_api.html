@@ -29,7 +29,8 @@
       <button onclick="setAllStorageLocations(true);">reset</button>
 
       <!-- Storage access API -->
-      <br />
+      <br /><br />
+      <h4>Storage Access API</h4>
       <button onclick="document.requestStorageAccess();">requestStorageAccess()</button><br />
       <button onclick="hasStorageAccess();">hasStorageAccess()</button><pre id="has_storage_access"></pre>
 
@@ -150,9 +151,9 @@
         setAllStorageLocations(false);
 
         // Storage Access API
-        function hasStorageAccess() {
+        async function hasStorageAccess() {
           var output = document.getElementById('has_storage_access');
-          output.innerHTML = document.hasStorageAccess();
+          output.innerHTML = await document.hasStorageAccess();
         }
         hasStorageAccess();
       </script>
