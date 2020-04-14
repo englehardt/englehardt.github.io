@@ -4,10 +4,12 @@
   <body>
     <b>NOTE: As of December 9th, 2019 the `base-track-digest256` tests are removed from this page since that list is no longer in use for new version of Nightly (72 and beyond).</b>
     <p>Test for each list will say "Blocked" if Firefox is blocking resources from that list.</p>
-    <p>Fingerprinting (base-fingerprinting-track-digest256):</p>
-    <img
-       src="https://base-fingerprinting-track-digest256.dummytracker.org/test_not_blocked.png"
-       onerror="this.onerror=null;this.src='https://not-a-tracker.dummytracker.org/test_blocked.png'">
+   <p>Fingerprinting (base-fingerprinting-track-digest256):</p>
+    <pre id="result">test not run</pre>
+    <script src="https://base-fingerprinting-track-digest256.dummytracker.org/tracker.js"
+      onerror="this.onerror=null;var result=document.getElementById('result');result.innerHTML='blocked';"
+      onload="this.onload=null;var result=document.getElementById('result');result.innerHTML='NOT blocked';"
+      ></script>
     <br/>
     <h3>Level 1 (Basic) List</h3>
     <p>Level 1 Tracker blocking with separate lists (social-track-digest256,ads-track-digest256,analytics-track-digest256).
