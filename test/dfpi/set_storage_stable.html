@@ -25,11 +25,6 @@
       <div id="set_idb_message"><p>Trying to set foo in indexedDB to:</p><pre id='idb_set'></pre></div>
       <p>Current IndexedDB</p><pre id='idb_read'></pre>
 
-      <h4>window.name</h4>
-      <p id="window_name_message"></p>
-      <div id="set_window_name_message"><p>Trying to set window.name to:</p><pre id='window_name_set'></pre></div>
-      <p>Current window.name</p><pre id='window_name_read'></pre>
-
       <button onclick="setAllStorageLocations(false);">rerun</button>
       <button onclick="setAllStorageLocations(true);">reset</button>
       <script>
@@ -139,37 +134,11 @@
             get.innerHTML = 'foo='+foo;
           }
         }
-        function setWindowName(reset=false) {
-          var val = window.name;
-          var msg = document.getElementById('window_name_message');
-          if (val === "" || reset === true) {
-            msg.innerHTML = 'window.name not yet set, setting now...';
-            var set_message_div = document.getElementById('set_window_name_message');
-            set_message_div.style = "";
-
-            var set = document.getElementById('window_name_set');
-            set.innerHTML = newRandVal;
-            window.name = newRandVal;
-
-            val = window.name;
-            var get = document.getElementById('window_name_read');
-            get.innerHTML = val;
-          } else {
-            msg.innerHTML = 'window.name already set, not overwriting...';
-
-            var set_message_div = document.getElementById('set_window_name_message');
-            set_message_div.style = "display: none;";
-
-            var get = document.getElementByi=Id('window_name_read');
-            get.innerHTML = val;
-          }
-        }
         function setAllStorageLocations(reset=false) {
           setCookies(reset);
           setLocalStorage(reset);
           setSessionStorage(reset);
           setIndexedDB(reset);
-          setWindowName(reset);
         }
         setAllStorageLocations(false);
       </script>
