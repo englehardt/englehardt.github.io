@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- <link rel="icon" href="../../../../favicon.ico"> -->
+
+    <title>No boundaries: data exfiltration by third parties embedded on web pages</title>
+    <link href="assets/bootstrap.css" rel="stylesheet">
+
+    <!-- CSS to customize styles -->
+    <link href="assets/custom.css" rel="stylesheet">
+    <script type="text/javascript" language="javascript" src="assets/jquery-1.js"></script>
+    <link rel="stylesheet" href="assets/jquery-ui.css">
+    <script src="assets/jquery-ui.js"></script>
+		<style type="text/css" title="currentStyle">
+		        @import "/assets/css/demo_table.css";
+		</style>
+
+    <script src="assets/popper.js"></script>
+    <script src="assets/bootstrap.js"></script>
+    <script type="text/javascript" async="" src="assets/MathJax.js"></script>
+
+    <script type="text/javascript" language="javascript" src="assets/jquery.js"></script>
+    <script type="text/javascript" charset="utf-8">
+
+    	if (navigator.userAgent.match(/IEMobile\/10\.0/)) {
+			var msViewportStyle = document.createElement("style");
+			msViewportStyle.appendChild(
+				document.createTextNode(
+					"@-ms-viewport{width:auto!important}"
+				)
+			);
+			document.getElementsByTagName("head")[0].
+				appendChild(msViewportStyle);
+		}
+
+    </script>
+    <script type="text/javascript" language="javascript" src="assets/clipboard.js"></script>
+</head>
+<body><div id="MathJax_Message" style="display: none;"></div>
+<header>
+<nav class="navbar navbar-expand-sm navbar-dark fixed-top bg-dark">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <span class="navbar-brand d-flex flex-fill" id="brand-span">No Boundaries</span>
+  <div class="collapse navbar-collapse" id="navbarCollapse">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="#findings">Findings</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#code">Code</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#data">Data</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#errata">Errata</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#acknowledgements">Acknowledgements</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#reference">Reference</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#contact">Contact</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+</header>
+    <main role="main" class="container">
+      <div class="jumbotron">
+        <h1>No boundaries: data exfiltration by third parties embedded on web pages</h2>
+        <p class="lead">We investigate data exfiltration by third-party scripts directly embedded on web pages. Specifically, we study three attacks: misuse of browsers' internal login managers, social data exfiltration, and whole-DOM exfiltration.
+        </p>
+        <p class="lead">
+        Our 2018 measurements revealed invasive practices including the insertion of invisible login forms to trigger autofilling of the saved user credentials, the exfiltration of user data fom embedded social networks, and sensitive data leaks to third parties due to wholesale collection of the DOM. We discuss the lessons learned from the responses to the initial disclosure of our findings and fixes that were deployed by the websites, browser vendors, third-party libraries and privacy protection tools.</p>
+        <a class="btn btn-lg btn-warning" href="#TODO" role="button">Paper (PDF) »</a>
+      </div>
+
+      <div id="authors" class="page-header">
+        <h2>Authors</h2>
+      </div>
+      <p>
+        The study is a collaboration between <b>Gunes Acar</b> (KU Leuven), <b>Steven Englehardt</b> (Mozilla), and <b>Arvind Narayanan</b> (Princeton University)<br>
+      </p>
+
+	<div id="findings" class="page-header">
+		<h2>Interesting Things From the Paper</h2>
+	</div>
+
+  TODO
+
+    <div id="code" class="page-header">
+        <h2>Source code — A modified version of OpenWPM</h2>
+      </div>
+         The code for <a href="#TODO">our modified version</a> of the <a href="https://github.com/mozilla/OpenWPM">OpenWPM</a> web privacy measurement tool can be found on <a href="#TODO">GitHub</a>.
+
+
+    <div id="data" class="page-header">
+        <h2>Data</h2>
+      </div>
+      <p>The data is available TODO.</p>
+
+      <p><a class="btn btn-sm btn-info" href="#TODO" role="button">Data »</a>
+      </p>
+
+<!--
+    <div id="errata" class="page-header">
+        <h2>Paper Errata</h2>
+      </div>
+      <ul>
+        <li>
+        None so far
+        </li>
+    </ul>
+-->
+
+    <div id="acknowledgements" class="page-header">
+        <h2>Acknowledgements</h2>
+      </div>
+      <p>We thank our shepherd Oleksii Starov for his valuable feedback, Mihir
+      Kshirsagar for his help with questions related to regulations, Dimitar
+      Bounov and Sorin Lerner for bringing Gradescope leaks to our attention.
+      This study is supported by an NSF grant (CNS 1526353). Some of our
+      measurements were funded by an Amazon AWS Cloud Credits for Research
+      grant. Gunes Acar holds a Postdoctoral fellowship from the Research
+      Foundation Flanders (FWO). This work was supported by CyberSecurity
+      Research Flanders with reference number VR20192203.</p>
+
+    <div id="reference" class="page-header">
+      <h2>Reference</h2>
+    </div>
+    <p><b>Reference:</b> Gunes Acar, Steven Englehardt, Arvind Narayanan.
+    No boundaries: data exfiltration by third parties embedded on web pages.
+    In <i>Proceedings of the 20th Privacy Enhancing Technologies Symposium (PETS),
+      July 13–16, 2020</i>.
+    </p>
+    <p><b>BibTeX:</b> <button class="btn btn-sm btn-info btn-bibtex" data-clipboard-target=".bibtex-code">Copy to clipboard</button></p>
+<pre><code class="bibtex-code">@inproceedings{acar2020noboundaries,
+  author    = {Gunes Acar and Steven Englehardt and Arvind Narayanan},
+  title     = {No boundaries: data exfiltration by third parties embedded on web pages},
+  booktitle = {Proceedings of the 20th Privacy Enhancing Technologies Symposium (PETS)},
+  year      = 2020,
+  month     = jul,
+  publisher = {Sciendo},
+  doi       = {10.2478/popets-2020-0070},
+  url       = {https://petsymposium.org/2020/files/papers/issue4/popets-2020-0068.pdf}
+}</code></pre>
+
+
+   <div id="contact" class="page-header">
+    <h2>Contact</h2>
+    <div class="col-md-6">
+    <table class="table table-striped table-bordered">
+      <tbody>
+			  <tr class="active"><td><a href="https://gunesacar.net/"><b>Gunes Acar</b></a> </td><td><code>gunes.acar@esat.kuleuven.be</code></td></tr>
+        <tr class="warning"><td><a href="https://senglehardt.com/"><b>Steven Englehardt</b></a> </td><td> <code>senglehardt@mozilla.com</code> </td></tr>
+        <tr class="danger"><td><a href="https://www.cs.princeton.edu/~arvindn/"><b>Arvind Narayanan</b></a></td><td> <code>arvindn@cs.princeton.edu</code></td></tr>
+    </tbody></table>
+		</div>
+    </div>
+    <footer class="footer">
+      <div class="container">
+        <span class="text-muted small">This page is hosted on GitHub Pages, please see GitHub's privacy statement
+        <a href="https://help.github.com/articles/github-privacy-statement/">here</a>.</span>
+      </div>
+    </footer>
+    </main>
+
+    <script>
+      $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+      })
+      $('.navbar-nav>li>a').on('click', function(){
+          $('.navbar-collapse').collapse('hide');
+      });
+      // Modified from https://stackoverflow.com/a/49331692
+      var divId;
+      $('.nav-link').click(function(){
+        divId = $(this).attr('href');
+         $('html, body').animate({
+          scrollTop: $(divId).offset().top - 65
+        }, 100);
+      });
+    </script>
+    <script>
+    $(function() {
+      var clipboard = new ClipboardJS('.btn-bibtex');
+    });
+    </script>
+</body></html>
