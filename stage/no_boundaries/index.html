@@ -53,14 +53,19 @@
         <a class="nav-link" href="#findings">Findings</a>
       </li>
       <li class="nav-item">
+        <a class="nav-link" href="#retrospective">Retrospective</a>
+      </li>
+      <li class="nav-item">
         <a class="nav-link" href="#code">Code</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="#data">Data</a>
       </li>
+      <!--
       <li class="nav-item">
         <a class="nav-link" href="#errata">Errata</a>
       </li>
+      -->
       <li class="nav-item">
         <a class="nav-link" href="#acknowledgements">Acknowledgements</a>
       </li>
@@ -77,10 +82,10 @@
     <main role="main" class="container">
       <div class="jumbotron">
         <h1>No boundaries: data exfiltration by third parties embedded on web pages</h2>
-        <p class="lead">We investigate data exfiltration by third-party scripts directly embedded on web pages. Specifically, we study three attacks: misuse of browsers' internal login managers, social data exfiltration, and whole-DOM exfiltration.
+        <p class="lead"> In a Freedom to Tinker <a href="https://freedom-to-tinker.com/tag/noboundaries/">blogpost series</a> in 2017/18, we revealed how web trackers exfiltrate personal information from web pages, browser password managers, form inputs, and the Facebook Login API. Our findings resulted in many fixes and privacy improvements to browsers, websites, third parties, and privacy protection tools. However, the root causes of these privacy failures remain unchanged, because they stem from the design of the web itself.
         </p>
-        <p class="lead">
-        Our 2018 measurements revealed invasive practices including the insertion of invisible login forms to trigger autofilling of the saved user credentials, the exfiltration of user data fom embedded social networks, and sensitive data leaks to third parties due to wholesale collection of the DOM. We discuss the lessons learned from the responses to the initial disclosure of our findings and fixes that were deployed by the websites, browser vendors, third-party libraries and privacy protection tools.</p>
+        <p class="lead">In a paper at the <a href="https://petsymposium.org/2020/program.php">2020 Privacy Enhancing Technologies Symposium</a>, we recap our findings and propose two potential paths forward.
+        </p>
         <a class="btn btn-lg btn-warning" href="#TODO" role="button">Paper (PDF) »</a>
       </div>
 
@@ -91,11 +96,53 @@
         The study is a collaboration between <b>Gunes Acar</b> (KU Leuven), <b>Steven Englehardt</b> (Mozilla), and <b>Arvind Narayanan</b> (Princeton University)<br>
       </p>
 
-	<div id="findings" class="page-header">
-		<h2>Interesting Things From the Paper</h2>
-	</div>
-
-  TODO
+    <div id="findings" class="page-header">
+      <h2>Our findings</h2>
+    </div>
+    <p>
+      An overview of the types of vulnerabilities we discovered during our 2017/2018 measurements of over 300,000 distinct visits to 50,000 sites.
+    </p>
+    <div id="login-misuse" class="page-header">
+      <h4>Trackers misuse browser login managers</h4>
+    </div>
+    <div class="row">
+      <div class="col-xs-12 col-lg-2"></div>
+      <div class="col-xs-12 col-lg-8">
+        <img src="assets/autofill.svg" style="width:100%"></img>
+      </div>
+      <div class="col-xs-12 col-lg-2"></div>
+    </div>
+    <p>
+    We found two tracking scripts misusing browser login managers to collect email addresses. These scripts
+    were present on 1,100 of the Alexa top 1M sites in September 2017.
+    The mechanism works like this: First, a user fills out a login form on the page and asks
+    the browser to save the login credentials. The third-party script
+    does not need to be present on the login page. Then, the user visits
+    another page on the same website which includes the third-party
+    script. The script inserts an invisible login form, which is automatically
+    filled in by the browser's login manager. The third-party script retrieves
+    the user's email address by reading the populated form and sends the
+    email hashes to third-party servers.
+    </p>
+    <a class="btn btn-sm btn-info" href="https://senglehardt.com/demo/no_boundaries/loginmanager/" role="button">Demo »</a>
+    <div id="social-misuse" class="page-header">
+      <h4>Social login data exiltrated by trackers</h4>
+    </div>
+    <p>
+    TODO
+    </p>
+    <div id="dom-exfiltration" class="page-header">
+      <h4>Personal data leaks to trackers during whole-DOM exfiltration</h4>
+    </div>
+    <p>
+    TODO
+    </p>
+    <div id="retrospective" class="page-header">
+      <h2>A retrospective look</h2>
+    </div>
+    <p>
+    TODO
+    </p>
 
     <div id="code" class="page-header">
         <h2>Source code — A modified version of OpenWPM</h2>
