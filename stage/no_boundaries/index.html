@@ -53,7 +53,7 @@
         <a class="nav-link" href="#findings">Findings</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#retrospective">Retrospective</a>
+        <a class="nav-link" href="#responses">Responses</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="#code">Code</a>
@@ -82,7 +82,7 @@
     <main role="main" class="container">
       <div class="jumbotron">
         <h1>No boundaries: data exfiltration by third parties embedded on web pages</h2>
-        <p class="lead"> In a Freedom to Tinker <a href="https://freedom-to-tinker.com/tag/noboundaries/">blogpost series</a> in 2017/18, we revealed how web trackers exfiltrate personal information from web pages, browser password managers, form inputs, and the Facebook Login API. Our findings resulted in many fixes and privacy improvements to browsers, websites, third parties, and privacy protection tools. However, the root causes of these privacy failures remain unchanged, because they stem from the design of the web itself.
+        <p class="lead"> In a Freedom to Tinker blogpost series in 2017/18, we revealed how web trackers exfiltrate personal information from <a href="https://freedom-to-tinker.com/2017/11/15/no-boundaries-exfiltration-of-personal-data-by-session-replay-scripts/">web pages</a>, <a href="https://freedom-to-tinker.com/2017/12/27/no-boundaries-for-user-identities-web-trackers-exploit-browser-login-managers/">browser password managers</a>, <a href="https://freedom-to-tinker.com/2018/02/26/no-boundaries-for-credentials-password-leaks-to-mixpanel-and-session-replay-companies/">form inputs</a>, and the <a href="https://freedom-to-tinker.com/2018/04/18/no-boundaries-for-facebook-data-third-party-trackers-abuse-facebook-login/">Facebook Login API</a>. Our findings resulted in many fixes and privacy improvements to browsers, websites, third parties, and privacy protection tools. However, the root causes of these privacy failures remain unchanged, because they stem from the design of the web itself.
         </p>
         <p class="lead">In a paper at the <a href="https://petsymposium.org/2020/program.php">2020 Privacy Enhancing Technologies Symposium</a>, we recap our findings and propose two potential paths forward. This companion website provides an overview of the attacks and summarizes the response to the initial release of our findings.
         </p>
@@ -97,13 +97,13 @@
       </p>
 
     <div id="findings" class="page-header">
-      <h2>Our findings</h2>
+      <h2>Findings</h2>
     </div>
     <p>
-      An overview of the types of vulnerabilities we discovered during our 2017/2018 measurements of over 300,000 distinct visits to 50,000 sites.
+    We discovered three broad classes of vulnerabilities during our 2017 measurements: the misuse of browser login managers by trackers, data exfiltration from social login APIs, and the leaking of personal data to trackers due to whole-DOM exfiltration. All three classes are explored in depth in <a href="#">our paper</a>. As an example, we provide a brief summary of login manager misuse below.
     </p>
     <div id="login-misuse" class="page-header">
-      <h4>Trackers misuse browser login managers</h4>
+      <h4>Example finding: Trackers misuse browser login managers</h4>
     </div>
     <div class="row">
       <div class="col-xs-12 col-lg-2"></div>
@@ -128,6 +128,16 @@
     email hashes to third-party servers.
     </p>
     <a class="btn btn-sm btn-info" href="https://senglehardt.com/demo/no_boundaries/loginmanager/" role="button">Demo »</a>
+    <!--
+    <p>
+      An overview of the types of vulnerabilities we discovered during our 2017/2018 measurements of over 300,000 distinct visits to 50,000 sites.
+    </p>
+    <div id="login-misuse" class="page-header">
+      <h4>Trackers misuse browser login managers</h4>
+    </div>
+    <p>
+    TODO
+    </p>
     <div id="social-misuse" class="page-header">
       <h4>Social login data exiltrated by trackers</h4>
     </div>
@@ -140,27 +150,143 @@
     <p>
     TODO
     </p>
-    <div id="retrospective" class="page-header">
-      <h2>A retrospective look</h2>
+    -->
+    <div id="responses" class="page-header">
+      <h2>Responses</h2>
     </div>
     <p>
-    TODO
+    The publication of our findings resulted in several privacy fixes and improvements to browsers, websites, third parties and privacy protection tools. The table below provides an overview. A full description of the responses is available in <a href="TODO.pdf#subsection.7.1">Section 7.1</a> of our paper.
     </p>
-
+    <div class="row">
+      <div class="col-xs-12 col-lg-1"></div>
+      <div class="col-xs-12 col-lg-10">
+        <table class="table table-responses">
+          <tr>
+            <th class="th2" scope="col" rowspan="2" colspan="2">Party</th>
+            <th class="th2" style="border-bottom: thin black solid;" scope="col" colspan="3">Attacks</th>
+          </tr>
+          <tr>
+            <th scope="col">Login Manager</th>
+            <th scope="col">Social Integration</th>
+            <th scope="col">DOM Exfiltration</th>
+          </tr>
+          <tr>
+            <th class="th1" scope="row" rowspan="4">Browsers</th>
+            <td>Chrome</td>
+            <td><a href="https://bugs.chromium.org/p/chromium/issues/detail?id=798492">Considering restrictions</a></td>
+            <td>No fix</td>
+            <td>No fix</td>
+          </tr>
+          <tr>
+            <td>Firefox</td>
+            <td><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1427543">Considering restrictions</a></td>
+            <td><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1601452">Proposal</a><a href="#" onClick="return false;" style="color:#212529" data-toggle="tooltip" title="This proposal is motivated by the types of attacks examined in this work, but does not reference our work explicitly."><sup>[1]</sup></a></td>
+            <td><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1601452">Proposal</a><a href="#" onClick="return false;" style="color:#212529" data-toggle="tooltip" title="This proposal is motivated by the types of attacks examined in this work, but does not reference our work explicitly."><sup>[1]</sup></a></td>
+          </tr>
+          <tr>
+            <td>Safari</td>
+            <td><a href="https://support.apple.com/en-us/HT208695">Require interaction</a></td>
+            <td>No fix</td>
+            <td>No fix</td>
+          </tr>
+          <tr class="sep">
+            <td>Brave</td>
+            <td><a href="https://github.com/brave/browser-laptop/issues/12489">Require interaction</a></td>
+            <td><a href="https://github.com/privacycg/js-membranes">Proposal</a><a href="#" onClick="return false;" style="color:#212529" data-toggle="tooltip" title="This proposal is motivated by the types of attacks examined in this work, but does not reference our work explicitly."><sup>[2]</sup></a></td>
+            <td><a href="https://github.com/privacycg/js-membranes">Proposal</a><a href="#" onClick="return false;" style="color:#212529" data-toggle="tooltip" title="This proposal is motivated by the types of attacks examined in this work, but does not reference our work explicitly."><sup>[2]</sup></a></td>
+          </tr>
+          <tr>
+            <th class="th1" scope="row" rowspan="2">Blocklists</th>
+            <td>EasyList &amp; EasyPrivacy</td>
+            <td>Already Blocked<a href="#" onClick="return false;" style="color:#212529" data-toggle="tooltip" title="No third parties were added to EL/EP due to Social data exfiltration. EL/EP already blocked three of the seven scripts from Table 2 in our paper (ProPS, OnAudience, Nativka) at the time of our measurement and blocked Forter since, but not as a response to our study."><sup>[3]</sup></a></td>
+            <td>Not blocked</td>
+            <td><a href="https://freedom-to-tinker.com/2017/11/15/no-boundaries-exfiltration-of-personal-data-by-session-replay-scripts/#comment-28428">Blocked</a></td>
+          </tr>
+          <tr class="sep">
+            <td>Disconnect</td>
+            <td><a href="https://github.com/disconnectme/disconnect-tracking-protection/issues/36">Blocked</a></td>
+            <td>Not blocked<a href="#" onClick="return false;" style="color:#212529" data-toggle="tooltip" title="Disconnect blocked behavioralengine.com due to its Login manager misuse"><sup>[4]</sup></a></td>
+            <td><a href="https://github.com/disconnectme/disconnect-tracking-protection/commit/09c7b279a88c8eda1ae18fe7b405e6cc315d2855">Blocked</a></td>
+          </tr>
+          <tr>
+            <th class="th1" scope="row" rowspan="6">Third parties</th>
+            <td>Adthink</td>
+            <td><a href="https://www.theverge.com/2017/12/30/16829804/browser-password-manager-adthink-princeton-research">Stopped</a></td>
+            <td>N/A</td>
+            <td>N/A</td>
+          </tr>
+          <tr>
+            <td>OnAudience</td>
+            <td><a href="https://gist.github.com/gunesacar/11883c40b4a2def7cee0f5dd757787d6#file-onaudience_behavioral_engine-diff-L95-L134">Stopped</a></td>
+            <td>Stopped</td>
+            <td>N/A</td>
+          </tr>
+          <tr>
+            <td>FullStory</td>
+            <td>N/A</td>
+            <td>N/A</td>
+            <td><a href="https://freedom-to-tinker.com/2018/02/26/no-boundaries-for-credentials-password-leaks-to-mixpanel-and-session-replay-companies/">Fixed PW leak bug</a></td>
+          </tr>
+          <tr>
+            <td>Facebook</td>
+            <td>N/A</td>
+            <td>N/A</td>
+            <td><a href="https://developers.facebook.com/blog/post/2018/04/19/facebook-login-changes-address-abuse">Limited</a></td>
+          </tr>
+          <tr>
+            <td>Smartlook</td>
+            <td>N/A</td>
+            <td>N/A</td>
+            <td><a href="https://www.vice.com/en_us/article/59yexk/princeton-study-session-replay-scripts-tracking-you">Limited</a></td>
+          </tr>
+          <tr class="sep">
+            <td>Yandex</td>
+            <td>N/A</td>
+            <td>N/A</td>
+            <td><a href="https://www.vice.com/en_us/article/59yexk/princeton-study-session-replay-scripts-tracking-you">Limited</a></td>
+          </tr>
+          <tr>
+            <th class="th1" scope="row" rowspan="3">First parties</th>
+            <td>Walgreens</td>
+            <td>N/A</td>
+            <td>N/A</td>
+            <td><a href="https://www.wired.com/story/the-dark-side-of-replay-sessions-that-record-your-every-move-online/">Stopped</a></td>
+          </tr>
+          <tr>
+            <td>Bonobos</td>
+            <td>N/A</td>
+            <td>N/A</td>
+            <td><a href="https://www.wired.com/story/the-dark-side-of-replay-sessions-that-record-your-every-move-online/">Stopped</a></td>
+          </tr>
+          <tr class="sep">
+            <td>Gradescope</td>
+            <td>N/A</td>
+            <td>N/A</td>
+            <td><a href="https://freedom-to-tinker.com/2018/01/12/website-operators-are-in-the-dark-about-privacy-violations-by-third-party-scripts/">Stopped</a></td>
+          </tr>
+        </table>
+      </div>
+      <div class="col-xs-12 col-lg-1"></div>
+    </div>
     <div id="code" class="page-header">
         <h2>Source code — A modified version of OpenWPM</h2>
       </div>
+      <!--
+        <p>
          The code for <a href="#TODO">our modified version</a> of the <a href="https://github.com/mozilla/OpenWPM">OpenWPM</a> web privacy measurement tool can be found on <a href="#TODO">GitHub</a>.
-
-
+         </p>
+      -->
+      <p><i>Coming soon...</i></p>
     <div id="data" class="page-header">
         <h2>Data</h2>
       </div>
-      <p>The data is available TODO.</p>
-
-      <p><a class="btn btn-sm btn-info" href="#TODO" role="button">Data »</a>
-      </p>
-
+      <p>The data from our 2017 measurements is available for download in bzip2 archives:</p>
+      <ul>
+        <li><a href="https://webtransparency.cs.princeton.edu/no_boundaries/crawl_data/2017-06-23_facebook_api_spoofing.tar.bz2">Spoofed Facebook Login Crawl</a>&nbsp;(31.1 GB)&mdash;<i>Used to detect Social API misuse.</i></li>
+        <li><a href="https://webtransparency.cs.princeton.edu/no_boundaries/crawl_data/2017-11-03_dom_chunk.tar.bz2">Chunk Injection Crawl 1 - with injection</a>&nbsp;(25.6 GB)&mdash;<i>Used to detect Whole-DOM Scraping.</i></li>
+        <li><a href="https://webtransparency.cs.princeton.edu/no_boundaries/crawl_data/2017-11-03_dom_chunk_no_injection.tar.bz2">Chunk Injection Crawl 2 - no injection</a>&nbsp;(13.8 GB)&mdash;<i>Used to detect Whole-DOM Scraping.</i></li>
+        <li><a href="https://webtransparency.cs.princeton.edu/no_boundaries/crawl_data/2017-06-23_passive_identity.tar.bz2">Identity Injection Crawl</a>&nbsp;(31.8 GB)&mdash;<i>Used to detect Login Manager misuse and Whole-DOM Scraping.</i></li>
+      </ul>
 <!--
     <div id="errata" class="page-header">
         <h2>Paper Errata</h2>
@@ -216,12 +342,14 @@
     </tbody></table>
 		</div>
     </div>
+    <!--
     <footer class="footer">
       <div class="container">
         <span class="text-muted small">This page is hosted on GitHub Pages, please see GitHub's privacy statement
         <a href="https://help.github.com/articles/github-privacy-statement/">here</a>.</span>
       </div>
     </footer>
+    -->
     </main>
 
     <script>
