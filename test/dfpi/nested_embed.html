@@ -1,7 +1,30 @@
 <html>
   <head>
+    <style>
+      .column {
+        float: left;
+        width: 50%;
+      }
+
+      /* Clear floats after the columns */
+      .row:after {
+        content: "";
+        display: table;
+        clear: both;
+      }
+    </style>
   </head>
   <body>
-    <iframe width=500 height=1000 src="https://englehardt-tracker.com/nested_embed.html"></iframe>
+    <div class="row">
+      <div class="column">
+        <h3>senglehardt.com</h3>
+        <h4>same-site, same-origin iframe</h4>
+        <iframe width=500 height=1000 src="set_storage_stable.html"></iframe>
+      </div>
+      <div class="column">
+        <h3>senglehardt.com embedded inside a frame from senglehardt-tracker.com</h3>
+        <iframe width=500 height=1000 src="https://englehardt-tracker.com/nested_iframe.html"></iframe>
+      </div>
+    </div>
   </body>
 </html>
