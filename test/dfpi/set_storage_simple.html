@@ -34,11 +34,11 @@
 
         function outputResult(value, output_id) {
           var msg = document.getElementById(output_id);
-          if (value === "" & !hasStorageAccess) {
+          if (value === "" & hasStorageAccess === false) {
             msg.innerHTML = "BLOCKED";
-          } else if (value === "" & hasStorageAccess) {
+          } else if (value === "" & hasStorageAccess === true) {
             msg.innerHTML = "UNEXPECTED. We have storage access but value is empty...";
-          } else if (hasStorageAccess) {
+          } else if (hasStorageAccess === true) {
             msg.innerHTML = "UNRESTRICTED";
           } else {
             msg.innerHTML = "PARTITIONED";
