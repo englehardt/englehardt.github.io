@@ -1,0 +1,107 @@
+<!DOCTYPE HTML>
+<html lang="en-US" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <script src="https://cdn.jsdelivr.net/npm/idb-keyval@3/dist/idb-keyval-iife.min.js"></script>
+    </head>
+    <body>
+      <button onclick="setAllStorageLocations();">Rerun Tests</button>
+      <br>
+      <h4>cookies</h4>
+      <pre id="cookie_message"></pre>
+
+      <h4>localStorage</h4>
+      <pre id="ls_message"></pre>
+
+      <h4>sessionStorage</h4>
+      <pre id="ss_message"></pre>
+
+      <h4>Indexed DB</h4>
+      <pre id="idb_message"></pre>
+
+      <!-- Storage access API -->
+      <br />
+      <h4>Storage Access API</h4>
+      <button onclick='requestSA()'>requestStorageAccess()</button><br />
+      <p>Return value of requestStorageAccess():</p><pre id='request_storage_access'>not yet called</pre><br />
+      <button onclick='hasSA()'>hasStorageAccess()</button><br />
+      <p>Return value of hasStorageAccess():</p><pre id='has_storage_access'>not yet called</pre><br />
+
+
+      <script>
+        var newRandVal = Math.random();
+        var hasStorageAccess = document.hasStorageAccess();
+
+        function outputResult(value, output_id) {
+          var msg = document.getElementById(output_id);
+          if (value === "" & !hasStorageAccess) {
+            msg.innerHTML = "BLOCKED";
+          } else if (value === "" & hasStorageAccess) {
+            msg.innerHTML = "UNEXPECTED. We have storage access but value is empty...";
+          } else if (hasStorageAccess) {
+            msg.innerHTML = "UNRESTRICTED";
+          } else {
+            msg.innerHTML = "PARTITIONED";
+          }
+        }
+
+        function setCookies() {
+          var cookies = document.cookie;
+          if (cookies === "") {
+            document.cookie = 'foo='+newRandVal+'; SameSite=None; Secure';
+            cookies = document.cookie;
+          }
+          outputResult(cookies, 'cookie_message');
+        }
+        function setLocalStorage() {
+          var foo = window.localStorage.getItem('foo');
+          if (foo === null) {
+            window.localStorage.setItem('foo', newRandVal);
+            foo = window.localStorage.getItem('foo');
+          }
+          outputResult(foo, 'ls_message');
+        }
+        function setSessionStorage() {
+          var foo = window.sessionStorage.getItem('foo');
+          if (foo === null) {
+            window.sessionStorage.setItem('foo', newRandVal);
+            foo = window.sessionStorage.getItem('foo');
+          }
+          outputResult(foo, 'ss_message');
+        }
+        async function setIndexedDB() {
+          var foo = await idbKeyval.get('foo');
+          if (foo === undefined) {
+            await idbKeyval.set('foo', newRandVal);
+            foo = await idbKeyval.get('foo');
+          }
+          outputResult(foo, 'idb_message');
+        }
+        function setAllStorageLocations() {
+          setCookies();
+          setLocalStorage();
+          setSessionStorage();
+          setIndexedDB();
+        }
+        setAllStorageLocations();
+
+        // Storage Access API
+        function requestSA() {
+          var result = document.getElementById('request_storage_access');
+          document.requestStorageAccess().then(
+            () => {result.innerHTML = 'access granted'},
+            () => {result.innerHTML = 'access denied'}
+          );
+        }
+
+        function hasSA() {
+          var result = document.getElementById('has_storage_access');
+          document.hasStorageAccess().then(
+            (hasAccess) => {result.innerHTML = hasAccess},
+            (reason) => {result.innerHTML = 'promise rejected for reason' + reason}
+          );
+        }
+        hasSA();
+      </script>
+    </body>
+</html>
