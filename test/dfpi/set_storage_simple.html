@@ -30,19 +30,23 @@
 
       <script>
         var newRandVal = Math.random();
-        var hasStorageAccess = await document.hasStorageAccess();
 
         function outputResult(value, output_id) {
           var msg = document.getElementById(output_id);
-          if (value === "" & hasStorageAccess === false) {
-            msg.innerHTML = "BLOCKED";
-          } else if (value === "" & hasStorageAccess === true) {
-            msg.innerHTML = "UNEXPECTED. We have storage access but value is empty...";
-          } else if (hasStorageAccess === true) {
-            msg.innerHTML = "UNRESTRICTED";
-          } else {
-            msg.innerHTML = "PARTITIONED";
-          }
+          document.hasStorageAccess().then(
+            (hasStorageAccess) => {
+              if (value === "" & hasStorageAccess === false) {
+                msg.innerHTML = "BLOCKED";
+              } else if (value === "" & hasStorageAccess === true) {
+                msg.innerHTML = "UNEXPECTED. We have storage access but value is empty...";
+              } else if (hasStorageAccess === true) {
+                msg.innerHTML = "UNRESTRICTED";
+              } else {
+                msg.innerHTML = "PARTITIONED";
+              }
+            },
+            (reason) => {msg.innerHTML = 'promise rejected for reason' + reason}
+          );
         }
 
         function setCookies() {
