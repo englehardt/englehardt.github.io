@@ -54,26 +54,38 @@
           outputResult(cookies, 'cookie_message');
         }
         function setLocalStorage() {
-          var foo = window.localStorage.getItem('foo');
-          if (foo === null) {
-            window.localStorage.setItem('foo', newRandVal);
-            foo = window.localStorage.getItem('foo');
+          try {
+            var foo = window.localStorage.getItem('foo');
+            if (foo === null) {
+              window.localStorage.setItem('foo', newRandVal);
+              foo = window.localStorage.getItem('foo');
+            }
+          } catch (error) {
+            foo = "";
           }
           outputResult(foo, 'ls_message');
         }
         function setSessionStorage() {
-          var foo = window.sessionStorage.getItem('foo');
-          if (foo === null) {
-            window.sessionStorage.setItem('foo', newRandVal);
-            foo = window.sessionStorage.getItem('foo');
+          try {
+            var foo = window.sessionStorage.getItem('foo');
+            if (foo === null) {
+              window.sessionStorage.setItem('foo', newRandVal);
+              foo = window.sessionStorage.getItem('foo');
+            }
+          } catch (error) {
+            foo = "";
           }
           outputResult(foo, 'ss_message');
         }
         async function setIndexedDB() {
-          var foo = await idbKeyval.get('foo');
-          if (foo === undefined) {
-            await idbKeyval.set('foo', newRandVal);
-            foo = await idbKeyval.get('foo');
+          try {
+            var foo = await idbKeyval.get('foo');
+            if (foo === undefined) {
+              await idbKeyval.set('foo', newRandVal);
+              foo = await idbKeyval.get('foo');
+            }
+          } catch (error) {
+            foo = "";
           }
           outputResult(foo, 'idb_message');
         }
