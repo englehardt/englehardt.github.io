@@ -30,7 +30,7 @@
 
       <script>
         var newRandVal = Math.random();
-        var hasStorageAccess = document.hasStorageAccess();
+        var hasStorageAccess = await document.hasStorageAccess();
 
         function outputResult(value, output_id) {
           var msg = document.getElementById(output_id);
