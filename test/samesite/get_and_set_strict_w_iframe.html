@@ -1,0 +1,23 @@
+<html>
+  <head>
+  </head>
+  <body>
+    This test page tries to set and retrieve a sameSite=Strict cookie.
+    <br>
+    <br>
+    Value of cookies read with document.cookie:
+    <pre id="cookie-result"></pre>
+
+    <script>
+      document.cookie = "a=b; SameSite=Strict; expires=Fri, 31 Dec 9999 23:59:59 GMT";
+      var pre = document.getElementById('cookie-result');
+      pre.innerHTML=document.cookie;
+    </script>
+    <br>
+    <br>
+    <h3>senglehardt.com</h3>
+    <iframe src="https://senglehardt.com/test/samesite/get_and_set_strict.html" height=400 width=400></iframe>
+    <h3>senglehardt.netlify.app</h3>
+    <iframe src="https://senglehardt.netlify.app/test/samesite/get_and_set_strict.html" height=400 width=400></iframe>
+  </body>
+</html>
