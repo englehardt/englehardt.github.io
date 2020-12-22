@@ -16,19 +16,19 @@
         var rand = Math.random();
         document.cookie = "samesite_strict="+rand+"; SameSite=Strict; expires=Fri, 31 Dec 9999 23:59:59 GMT";
         var pre = document.getElementById('strict-cookie-result');
-        pre.innerHTML="Set samesite=Strict cookie `foo` with value: "+rand;
+        pre.innerHTML="Set samesite=Strict cookie with value: "+rand;
       }
       function setLaxCookie() {
         var rand = Math.random();
         document.cookie = "samesite_lax="+rand+"; SameSite=Lax; expires=Fri, 31 Dec 9999 23:59:59 GMT";
         var pre = document.getElementById('lax-cookie-result');
-        pre.innerHTML="Set samesite=Lax cookie `foo` with value: "+rand;
+        pre.innerHTML="Set samesite=Lax cookie with value: "+rand;
       }
       function setNoneCookie() {
         var rand = Math.random();
         document.cookie = "samesite_none="+rand+"; SameSite=None; expires=Fri, 31 Dec 9999 23:59:59 GMT; Secure";
         var pre = document.getElementById('none-cookie-result');
-        pre.innerHTML="Set samesite=None cookie `foo` with value: "+rand;
+        pre.innerHTML="Set samesite=None cookie with value: "+rand;
       }
     </script>
     <br>
@@ -36,7 +36,7 @@
     <img src="https://senglehardt.com/favicon.ico?direct">
     <img src="https://nghttp2.org/httpbin/redirect-to?url=https%3A%2F%2Fsenglehardt.com%2Ffavicon.ico">
     <br>
-    <iframe src="https://senglehardt.com/test/samesite/get_and_set_strict.html" height=500 width=500></iframe>
+    <iframe src="https://senglehardt.com/test/samesite/get_and_set_strict.html?direct" height=500 width=500></iframe>
     <br>
     <br>
     <iframe src="https://nghttp2.org/httpbin/redirect-to?url=https%3A%2F%2Fsenglehardt.com%2Ftest%2Fsamesite%2Fget_and_set_strict.html" height=500 width=500></iframe>
