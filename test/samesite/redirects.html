@@ -5,14 +5,8 @@
     This test page retrieves subresources, some of which are redirected to from cross-origin resources.
     <br>
     <br>
-    <button onclick="clearCookies()">Clear cookies</button>
-    <br>
-    <br>
     <button onclick="setStrictCookie()">Set Strict Cookie</button>
     <script>
-      function clearCookies() {
-        document.cookie = "";
-      }
       function setStrictCookie() {
         var rand = Math.random();
         document.cookie = "samesite_strict="+rand+"; SameSite=Strict; expires=Fri, 31 Dec 9999 23:59:59 GMT";
@@ -22,6 +16,8 @@
     </script>
     <img src="https://senglehardt.com/favicon.ico?direct">
     <img src="https://nghttp2.org/httpbin/redirect-to?url=https%3A%2F%2Fsenglehardt.com%2Ffavicon.ico">
+    <br>
+    <iframe src="https://senglehardt.com/test/samesite/get_and_set_strict.html" height=500 width=500></iframe>
     <br>
     <br>
   </body>
