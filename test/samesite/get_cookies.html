@@ -4,11 +4,21 @@
   <body>
     Value of cookies read with document.cookie:
     <pre id="cookie-result"></pre>
-    <img src="ff.png">
 
     <script>
       var pre = document.getElementById('cookie-result');
       pre.innerHTML=document.cookie;
+
+      // Add image, possibly appending context string
+      const urlParams = new URLSearchParams(window.location.search);
+      const ctx = urlParams.get('ctx');
+      var imgSrc = 'ff.png'
+      if (ctx) {
+        imgSrc += '?' + ctx
+      }
+      var img = document.createElement('img');
+      img.src = imgSrc;
+      document.body.appendChild(img);
     </script>
   </body>
 </html>
