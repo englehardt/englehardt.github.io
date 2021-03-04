@@ -5,6 +5,9 @@
     This test page retrieves subresources, some of which are redirected to from cross-origin resources.
     <br>
     <br>
+    Cookies available via document.cookie:
+    <pre id="cookie-result"></pre>
+
     <button onclick="setStrictCookie()">Set Strict Cookie</button>
     <pre id="strict-cookie-result"></pre>
     <button onclick="setLaxCookie()">Set Lax Cookie</button>
@@ -12,6 +15,10 @@
     <button onclick="setNoneCookie()">Set None Cookie</button>
     <pre id="none-cookie-result"></pre>
     <script>
+      // Check cookies this frame has access to
+      var pre = document.getElementById('cookie-result');
+      pre.innerHTML=document.cookie;
+
       function setStrictCookie() {
         var rand = Math.random();
         document.cookie = "samesite_strict="+rand+"; Path=/; SameSite=Strict; expires=Fri, 31 Dec 9999 23:59:59 GMT";
@@ -45,7 +52,7 @@
     <h3>cross-site iframe redirect to same-site iframe (https://nghttp2.org --> https://senglehardt.com)</h3>
     <iframe src="https://nghttp2.org/httpbin/redirect-to?url=https%3A%2F%2Fsenglehardt.com%2Ftest%2Fsamesite%2Fget_cookies.html" height=200 width=500></iframe>
     <br>
-    <a href="https://nghttp2.org/httpbin/redirect-to?url=https%3A%2F%2Fsenglehardt.com%2Ftest%2Fsamesite%2Fget_cookies.html">Navigate via cross-site redirect to get cookies on https://senglehardt.com</a>
+    <a href="https://nghttp2.org/httpbin/redirect-to?url=https%3A%2F%2Fsenglehardt.com%2Ftest%2Fsamesite%2Fredirects.html">Navigate via cross-site redirect to get cookies on https://senglehardt.com</a>
     <br>
     <br>
     <h3>cross-site iframe (https://englehardt-tracker.com)</h3>
