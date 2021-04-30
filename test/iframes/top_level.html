@@ -1,0 +1,24 @@
+<html>
+  <head>
+  </head>
+  <body>
+    <h3>Same-origin iframe</h3>
+    <iframe
+      src="embedded-frame.html"
+      allow="" csp="default-src 'self'"></iframe>
+    <h3>Sandboxed same-origin iframe</h3>
+    <iframe
+      src="embedded-frame.html"
+      sandbox="all-scripts" allow="" csp="default-src 'self'"></iframe>
+    <h3>Cross-origin iframe</h3>
+    <iframe
+      src="https://senglehardt.netlify.app/test/iframe/embedded-frame.html"
+      allow="" csp="default-src 'self'"
+    ></iframe>
+    <h3>Sandboxed cross-origin iframe</h3>
+    <iframe
+      src="https://senglehardt.netlify.app/test/iframe/embedded-frame.html"
+      sandbox="all-scripts" allow="" csp="default-src 'self'"
+    ></iframe>
+  </body>
+</html>

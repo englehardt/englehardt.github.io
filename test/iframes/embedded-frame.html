@@ -1,0 +1,15 @@
+<html>
+  <head>
+  </head>
+  <body>
+    iframe that tries to resize itself
+    <script>
+      function resize() {
+        const frame = window.frameElement;
+        frame.width = 500;
+        frame.height = 500;
+      }
+      setTimeout(resize, 1000);
+    </script>
+  </body>
+</html>
