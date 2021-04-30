@@ -19,10 +19,13 @@
       }
 
       function addQuery() {
+        if (window.location.search !== "") {
+          return;
+        }
         var searchParams = new URLSearchParams("foo", "bar");
         window.location.search = searchParams;
       }
-      //addQuery();
+      addQuery();
 
       function addFragment() {
         window.location = window.location + '#foo';
