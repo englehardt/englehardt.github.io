@@ -6,16 +6,22 @@
     <script>
       const frame = window.frameElement;
 
-      // resize
-      function resize() {
-        frame.width = 500;
-        frame.height = 500;
+      if (frame) {
+        // resize
+        function resize() {
+          frame.width = 500;
+          frame.height = 500;
+        }
+        setTimeout(resize, 1000);
+
+        // name
+        frame.name = 'foo';
       }
-      setTimeout(resize, 1000);
 
-      // name
-      frameElement.name = 'foo';
-
+      function addFragment() {
+        window.location = window.location + '#foo';
+      }
+      addFragment();
     </script>
   </body>
 </html>

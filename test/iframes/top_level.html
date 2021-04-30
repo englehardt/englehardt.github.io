@@ -30,6 +30,14 @@
         });
       }
       setTimeout(getNames, 3000);
+
+      function getLocation() {
+        iframes.forEach((iframeId) => {
+          let ifr = document.getElementById(iframeId);
+          console.log(iframeId, ifr.src);
+        });
+      }
+      setTimeout(getLocation, 3000);
     </script>
 
   </body>
