@@ -34,7 +34,7 @@
       function getLocation() {
         iframes.forEach((iframeId) => {
           let ifr = document.getElementById(iframeId);
-          console.log(iframeId, ifr.contentWindow.location.href);
+          console.log(iframeId, ifr.contentWindow.location);
         });
       }
       setTimeout(getLocation, 3000);
