@@ -31,6 +31,11 @@
         window.location = window.location + '#foo';
       }
       addFragment();
+
+      function navigate() {
+        window.location = 'embedded-frame-2.html'
+      }
+      setTimeout(navigate, 3000);
     </script>
   </body>
 </html>
