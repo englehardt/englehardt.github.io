@@ -19,7 +19,8 @@
       }
 
       function addQuery() {
-        window.location = window.location + '?foo';
+        var searchParams = new URLSearchParams("foo", "bar");
+        window.location.search = searchParams;
       }
       addQuery();
 
