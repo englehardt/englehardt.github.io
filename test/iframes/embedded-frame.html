@@ -4,12 +4,18 @@
   <body>
     iframe that tries to resize itself
     <script>
+      const frame = window.frameElement;
+
+      // resize
       function resize() {
-        const frame = window.frameElement;
         frame.width = 500;
         frame.height = 500;
       }
       setTimeout(resize, 1000);
+
+      // name
+      frameElement.name = 'foo';
+
     </script>
   </body>
 </html>

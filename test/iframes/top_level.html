@@ -3,22 +3,33 @@
   </head>
   <body>
     <h3>Same-origin iframe</h3>
-    <iframe
+    <iframe id="same-origin"
       src="embedded-frame.html"
       allow="" csp="default-src 'self'"></iframe>
     <h3>Sandboxed same-origin iframe</h3>
-    <iframe
+    <iframe id="sandboxed-same-origin"
       src="embedded-frame.html"
       sandbox="all-scripts" allow="" csp="default-src 'self'"></iframe>
     <h3>Cross-origin iframe</h3>
-    <iframe
+    <iframe id="cross-origin"
       src="https://senglehardt.netlify.app/test/iframes/embedded-frame.html"
       allow="" csp="default-src 'self'"
     ></iframe>
     <h3>Sandboxed cross-origin iframe</h3>
-    <iframe
+    <iframe id="sandboxed-cross-origin"
       src="https://senglehardt.netlify.app/test/iframes/embedded-frame.html"
       sandbox="all-scripts" allow="" csp="default-src 'self'"
     ></iframe>
+
+    <script>
+      const iframes = ["same-origin", "sandboxed-same-origin", "cross-origin", "sandboxed-cross-origin"];
+      function getNames() {
+        iframes.forEach((iframeId) => {
+          let ifr = document.getElementById(iframeId);
+          console.log(iframeId, ifr.name);
+        });
+        setTimeout(getNames, 500);
+    </script>
+
   </body>
 </html>
