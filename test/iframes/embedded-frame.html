@@ -18,6 +18,11 @@
         frame.name = 'foo';
       }
 
+      function addQuery() {
+        window.location = window.location + '?foo';
+      }
+      addQuery();
+
       function addFragment() {
         window.location = window.location + '#foo';
       }
