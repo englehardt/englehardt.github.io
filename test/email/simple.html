@@ -16,79 +16,6 @@
 
     return stack;
   }
-
-  // from http://stackoverflow.com/a/5202185
-  const rsplit = function (source: string, sep, maxsplit) {
-    const split = source.split(sep);
-    return maxsplit
-      ? [split.slice(0, -maxsplit).join(sep)].concat(split.slice(-maxsplit))
-      : split;
-  };
-
-  function getOriginatingScriptContext(getCallStack = false) {
-    const trace = getStackTrace().trim().split("\n");
-    // return a context object even if there is an error
-    const empty_context = {
-      scriptUrl: "",
-      scriptLine: "",
-      scriptCol: "",
-      funcName: "",
-      scriptLocEval: "",
-      callStack: "",
-    };
-    if (trace.length < 4) {
-      return empty_context;
-    }
-    // 0, 1 and 2 are OpenWPM's own functions (e.g. getStackTrace), skip them.
-    const callSite = trace[3];
-    if (!callSite) {
-      return empty_context;
-    }
-    /*
-     * Stack frame format is simply: FUNC_NAME@FILENAME:LINE_NO:COLUMN_NO
-     *
-     * If eval or Function is involved we have an additional part after the FILENAME, e.g.:
-     * FUNC_NAME@FILENAME line 123 > eval line 1 > eval:LINE_NO:COLUMN_NO
-     * or FUNC_NAME@FILENAME line 234 > Function:LINE_NO:COLUMN_NO
-     *
-     * We store the part between the FILENAME and the LINE_NO in scriptLocEval
-     */
-    try {
-      let scriptUrl = "";
-      let scriptLocEval = ""; // for eval or Function calls
-      const callSiteParts = callSite.split("@");
-      const funcName = callSiteParts[0] || "";
-      const items = rsplit(callSiteParts[1], ":", 2);
-      const columnNo = items[items.length - 1];
-      const lineNo = items[items.length - 2];
-      const scriptFileName = items[items.length - 3] || "";
-      const lineNoIdx = scriptFileName.indexOf(" line "); // line in the URL means eval or Function
-      if (lineNoIdx === -1) {
-        scriptUrl = scriptFileName; // TODO: sometimes we have filename only, e.g. XX.js
-      } else {
-        scriptUrl = scriptFileName.slice(0, lineNoIdx);
-        scriptLocEval = scriptFileName.slice(
-          lineNoIdx + 1,
-          scriptFileName.length,
-        );
-      }
-      const callContext = {
-        scriptUrl,
-        scriptLine: lineNo,
-        scriptCol: columnNo,
-        funcName,
-        scriptLocEval,
-        callStack: getCallStack ? trace.slice(3).join("\n").trim() : "",
-      };
-      return callContext;
-    } catch (e) {
-      console.log(
-        "OpenWPM: Error parsing the script context",
-        e.toString(),
-        callSite,
-      );
-      return empty_context;
-    }
   }
 
         window.addEventListener("message", (event) => {
@@ -100,7 +27,7 @@
         });
         Object.defineProperty(window, 'Promise', {
           get: () => {
-            console.log('promise-get',getOriginatingScriptContext(true))
+            console.log('promise-get',getCallStack(true))
             return (e) => console.log(e)
           },
           set: () => console.log('promise-set')
