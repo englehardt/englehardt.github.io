@@ -4,19 +4,18 @@
   <body>
     <script>
 
-  // Helper to get originating script urls
-  function getStackTrace() {
-    let stack;
+        // Helper to get originating script urls
+        function getStackTrace() {
+          let stack;
 
-    try {
-      throw new Error();
-    } catch (err) {
-      stack = err.stack;
-    }
+          try {
+            throw new Error();
+          } catch (err) {
+            stack = err.stack;
+          }
 
-    return stack;
-  }
-  }
+          return stack;
+        }
 
         window.addEventListener("message", (event) => {
           console.log(event);
