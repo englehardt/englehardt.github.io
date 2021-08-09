@@ -7,12 +7,15 @@
           console.log(event);
         }, false);
         Object.defineProperty(Element.prototype, 'attachShadow', {
-          get: () => console.log('foo'),
-          set: () => console.log('bar')
+          get: () => console.log('attachShadow-get'),
+          set: () => console.log('attachShadow-set')
         });
         Object.defineProperty(window, 'Promise', {
-          get: () => console.log('foo2'),
-          set: () => console.log('bar2')
+          get: () => {
+            console.log('promise-get')
+            return (e) => console.log(e)
+          },
+          set: () => console.log('promise-set')
         });
     </script>
 
