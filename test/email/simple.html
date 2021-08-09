@@ -24,12 +24,12 @@
           get: () => console.log('attachShadow-get'),
           set: () => console.log('attachShadow-set')
         });
-        Object.defineProperty(window, 'Promise', {
+        Object.defineProperty(window.Array.prototype, 'from', {
           get: () => {
-            console.log('promise-get',getStackTrace(true))
+            console.log('arrayFrom-get',getStackTrace(true))
             return (e) => console.log(e)
           },
-          set: () => console.log('promise-set')
+          set: () => console.log('arrayFrom-set')
         });
     </script>
 
