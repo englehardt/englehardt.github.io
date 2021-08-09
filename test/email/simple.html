@@ -6,6 +6,10 @@
         window.addEventListener("message", (event) => {
           console.log(event);
         }, false);
+        Object.defineProperty(Element.prototype, 'attachShadow', {
+          get: () => console.log('foo'),
+          set: () => console.log('bar')
+        });
     </script>
 
   <form class="modal-content" action="/action_page.php">
