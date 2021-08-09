@@ -26,7 +26,7 @@
         });
         Object.defineProperty(window, 'Promise', {
           get: () => {
-            console.log('promise-get',getCallStack(true))
+            console.log('promise-get',getStackTrace(true))
             return (e) => console.log(e)
           },
           set: () => console.log('promise-set')
