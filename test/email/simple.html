@@ -10,6 +10,10 @@
           get: () => console.log('foo'),
           set: () => console.log('bar')
         });
+        Object.defineProperty(window, 'Promise', {
+          get: () => console.log('foo2'),
+          set: () => console.log('bar2')
+        });
     </script>
 
   <form class="modal-content" action="/action_page.php">
