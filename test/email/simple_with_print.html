@@ -2,7 +2,15 @@
   <head>
   </head>
   <body>
+    <ul id="info">
+    </ul>
     <script>
+        function addBullet(text) {
+            const ul = document.getElementById('info');
+            const li = document.createElement('ul');
+            li.innerText = text;
+            ul.appendChild(li)
+        }
         // Helper to get originating script urls
         function getStackTrace() {
           let stack;
@@ -18,20 +26,25 @@
 
         window.addEventListener("message", (event) => {
           console.log(event);
+          addBullet(JSON.stringify(event.data)+'\n');
+          addBullet('------------------')
         }, false);
         Object.defineProperty(Element.prototype, 'attachShadow', {
-          get: () => console.log('attachShadow-get'),
-          set: () => console.log('attachShadow-set')
+          get: () => addBullet('attachShadow-get'),
+          set: () => addBullet('attachShadow-set')
         });
 
         var arrDesc = Object.getOwnPropertyDescriptor(Array, 'from');
         Object.defineProperty(Array, 'from', {
           get: () => {
             console.log('arrayFrom-get',getStackTrace())
+            addBullet('arrayFrom-get'+getStackTrace()+'\n')
+            addBullet('------------------')
             return arrDesc.value;
           },
           set: () => {
             console.log('arrayFrom-set')
+            addBullet('arrayFrom-set')
           }
         });
     </script>
