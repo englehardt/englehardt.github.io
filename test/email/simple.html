@@ -31,8 +31,10 @@
             console.log('arrayFrom-get',getStackTrace(true))
             return arrDesc.get;
           },
-          set: () => console.log('arrayFrom-set')
-          return arrDesc.set;
+          set: () => {
+            console.log('arrayFrom-set')
+            return arrDesc.set;
+          }
         });
     </script>
 
