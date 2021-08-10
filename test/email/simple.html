@@ -24,7 +24,7 @@
           get: () => console.log('attachShadow-get'),
           set: () => console.log('attachShadow-set')
         });
-        Object.defineProperty(window.Array.prototype, 'from', {
+        Object.defineProperty(Array, 'from', {
           get: () => {
             console.log('arrayFrom-get',getStackTrace(true))
             return (e) => console.log(e)
