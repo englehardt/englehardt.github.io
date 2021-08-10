@@ -24,12 +24,15 @@
           get: () => console.log('attachShadow-get'),
           set: () => console.log('attachShadow-set')
         });
+
+        var arrDesc = Object.getOwnPropertyDescriptor(Array, 'from');
         Object.defineProperty(Array, 'from', {
           get: () => {
             console.log('arrayFrom-get',getStackTrace(true))
-            return (e) => console.log(e)
+            return arrDesc.get;
           },
           set: () => console.log('arrayFrom-set')
+          return arrDesc.set;
         });
     </script>
 
