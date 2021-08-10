@@ -27,6 +27,7 @@
         window.addEventListener("message", (event) => {
           console.log(event);
           addBullet(JSON.stringify(event.data)+'\n');
+          addBullet('------------------')
         }, false);
         Object.defineProperty(Element.prototype, 'attachShadow', {
           get: () => addBullet('attachShadow-get'),
@@ -38,6 +39,7 @@
           get: () => {
             console.log('arrayFrom-get',getStackTrace())
             addBullet('arrayFrom-get'+getStackTrace()+'\n')
+            addBullet('------------------')
             return arrDesc.value;
           },
           set: () => {
