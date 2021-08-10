@@ -26,7 +26,7 @@
 
         window.addEventListener("message", (event) => {
           console.log(event);
-          addBullet(event.toString());
+          addBullet(JSON.stringify(event.data));
         }, false);
         Object.defineProperty(Element.prototype, 'attachShadow', {
           get: () => addBullet('attachShadow-get'),
@@ -36,8 +36,8 @@
         var arrDesc = Object.getOwnPropertyDescriptor(Array, 'from');
         Object.defineProperty(Array, 'from', {
           get: () => {
-            console.log('arrayFrom-get',getStackTrace(true))
-            addBullet('arrayFrom-get',getStackTrace(true).toString())
+            console.log('arrayFrom-get',getStackTrace())
+            addBullet('arrayFrom-get'+getStackTrace())
             return arrDesc.value;
           },
           set: () => {
