@@ -29,11 +29,10 @@
         Object.defineProperty(Array, 'from', {
           get: () => {
             console.log('arrayFrom-get',getStackTrace(true))
-            return arrDesc.get;
+            return arrDesc.value;
           },
           set: () => {
             console.log('arrayFrom-set')
-            return arrDesc.set;
           }
         });
     </script>
