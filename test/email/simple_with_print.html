@@ -12,7 +12,9 @@
             ul.appendChild(li)
         }
         // Helper to get originating script urls
+        var inLog=false;
         function getStackTrace() {
+          inLog=true;
           let stack;
 
           try {
@@ -21,6 +23,7 @@
             stack = err.stack;
           }
 
+          inLog=false;
           return stack;
         }
 
@@ -37,9 +40,11 @@
         var propDesc = Object.getOwnPropertyDescriptor(Object, 'defineProperty');
         Object.defineProperty(Object, 'defineProperty', {
           get: () => {
-            console.log('defineProperty-get',getStackTrace())
-            addBullet('defineProperty-get'+getStackTrace()+'\n')
-            addBullet('------------------')
+            if (!inLog) {
+              console.log('defineProperty-get',getStackTrace())
+              addBullet('defineProperty-get'+getStackTrace()+'\n')
+              addBullet('------------------')
+            }
             return propDesc.value;
           },
           set: () => {
