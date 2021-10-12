@@ -178,7 +178,7 @@
         hasSA();
 
         // BroadcastChannel
-        function establishChannel() {
+        function sendMessageToChannel() {
           const bc = new BroadcastChannel('test_channel');
           bc.postMessage(newRandVal);
           let update = document.getElementById('channel_sent');
