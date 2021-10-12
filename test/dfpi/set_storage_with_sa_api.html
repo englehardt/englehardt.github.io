@@ -185,12 +185,13 @@
           update.innerHTML = newRandVal;
           bc.close();
         }
+        sendMessageToChannel();
 
         function startListening() {
           const bc = new BroadcastChannel('test_channel');
           bc.onmessage = function (ev) {
             let msg = document.getElementById('channel_received');
-            msg.innerText = msg.innerText + '\n' + ev;
+            msg.innerText = msg.innerText + '\n' + ev.data;
           }
         }
         startListening();
