@@ -7,7 +7,7 @@ const testsSummaryDiv = document.querySelector('#tests-summary');
 const testsDetailsElement = document.querySelector('#tests-details');
 
 const isLocalTest = window.location.hostname === 'localhost';
-const THIRD_PARTY_ORIGIN = isLocalTest ? `http://128.0.0.1:${window.location.port}` : 'https://senglehardt.netflify.app';
+const THIRD_PARTY_ORIGIN = isLocalTest ? `http://128.0.0.1:${window.location.port}` : 'https://senglehardt.netlify.app';
 
 // object that contains results of all tests
 const results = {
