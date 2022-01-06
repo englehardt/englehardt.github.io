@@ -16,21 +16,13 @@
 
     <p>This page will determine whether various storage APIs are parititoned across origins.</p>
 
-
-    <script>
-      function openWindow() {
-        window.open('https://example.com', '_blank');
-      }
-    </script>
-    <button onClick='openWindow()' id='testButton'>Test</button>
-
     <p><button id='run'>Run Tests</button></p>
 
-    <details id='tests' hidden>
-        <summary id='tests-summary'></summary>
+    <div id='tests' hidden>
+        <p id='tests-summary'></p><button id='toggle-details'>Show Detailed Results</button>
         <ul id='tests-details'>
         </ul>
-    </details>
+    </div>
 
     <p><button id='download' disabled>Download the result</button></p>
 
