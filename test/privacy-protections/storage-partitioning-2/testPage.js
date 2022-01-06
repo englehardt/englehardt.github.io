@@ -46,7 +46,6 @@ function readStorageInIframe () {
 function endTests (sessionId, results) {
     console.log('END TEST CALLED');
     window.localStorage.setItem(sessionId, JSON.stringify(results));
-    window.close();
 }
 
 function saveTestResults (testId, testIteration, sessionId, retrieval) {
