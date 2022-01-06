@@ -177,6 +177,14 @@ async function runTests () {
         };
     });
 
+    const sessionId = uuidv4();
+
+    // Open test tab where all tests will be run
+    const testURL = new URL('/test/privacy-protections/storage-partitioning-2/testWindow.html', window.location.origin);
+    testURL.searchParams.set('sessionId', sessionId);
+    testURL.searchParams.set('isLocalTest', isLocalTest);
+    const testWindow = window.open(testURL, '_blank');
+
     console.log(`Setting ${random} in a same-origin iframe...`);
     const status = await setStorage(window.location.origin, random);
     console.log(status);
@@ -190,14 +198,6 @@ async function runTests () {
             error: retrieval.error
         };
     });
-
-    const sessionId = uuidv4();
-
-    // Open test tab where all tests will be run
-    const testURL = new URL('/test/privacy-protections/storage-partitioning-2/testWindow.html', window.location.origin);
-    testURL.searchParams.set('sessionId', sessionId);
-    testURL.searchParams.set('isLocalTest', isLocalTest);
-    const testWindow = window.open(testURL, '_blank');
 
     window.addEventListener('storage', () => {
         testWindow.close();
