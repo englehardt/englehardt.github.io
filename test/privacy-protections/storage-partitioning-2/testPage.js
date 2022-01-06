@@ -3,8 +3,8 @@ const statusElement = document.querySelector('#status');
 const topURL = new URL(window.location.href);
 
 const isLocalTest = topURL.searchParams.get('isLocalTest') === 'true';
-const THIRD_PARTY_ORIGIN = isLocalTest ? `http://127.0.0.1:${window.location.port}` : 'https://senglehardt.netlify.app';
-const FIRST_PARTY_ORIGIN = isLocalTest ? `http://localhost:${window.location.port}` : 'https://senglehardt.com';
+const THIRD_PARTY_ORIGIN = isLocalTest ? `http://127.0.0.1:${window.location.port}` : 'https://good.third-party.site';
+const FIRST_PARTY_ORIGIN = isLocalTest ? `http://localhost:${window.location.port}` : 'https://privacy-test-pages.glitch.me';
 const configurations = [
     {
         id: 'same-site',
@@ -71,9 +71,7 @@ function openNextTestPage (testIndex, testIteration, sessionId, results) {
     nextURL.searchParams.set('results', JSON.stringify(results));
     nextURL.searchParams.set('testIndex', testIndex);
     nextURL.searchParams.set('testIteration', testIteration);
-    setTimeout(() => {
-        window.location.href = nextURL.href;
-    }, 1);
+    window.location.href = nextURL.href;
 }
 
 function saveTestResults (testId, testIteration, sessionId, retrieval) {
@@ -131,7 +129,7 @@ async function runTest () {
         nextURL.searchParams.set('results', JSON.stringify(results));
         setTimeout(() => {
             window.location.href = nextURL.href;
-        }, 200);
+        }, 2000);
         return;
     }
 

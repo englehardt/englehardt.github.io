@@ -41,7 +41,6 @@ function setStorage (frameOrigin, data) {
             document.body.appendChild(iframe);
 
             window.addEventListener('message', (event) => {
-                iframe.remove();
                 resolve(event.data);
             }, { capture: false, once: true });
         } catch (err) {
@@ -211,7 +210,6 @@ async function runTests () {
     });
 
     function storageHandler () {
-        console.log('RESULTS ARE READY');
         const results = JSON.parse(window.localStorage.getItem(sessionId));
         if (results === null) {
             // Could be a delete event or an event from an unrelated test tab.
