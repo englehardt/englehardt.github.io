@@ -32,7 +32,7 @@ function downloadTheResults () {
 function setStorage (frameOrigin, data) {
     return new Promise((resolve, reject) => {
         try {
-            const iframeURL = new URL(`/privacy-protections/storage-partitioning-2/iframe.html?data=${data}`, frameOrigin);
+            const iframeURL = new URL(`/test/privacy-protections/storage-partitioning-2/iframe.html?data=${data}`, frameOrigin);
             const iframe = document.createElement('iframe');
             iframe.height = 1;
             iframe.width = 1;
@@ -52,7 +52,7 @@ function setStorage (frameOrigin, data) {
 function getStorage (frameOrigin) {
     return new Promise((resolve, reject) => {
         try {
-            const iframeURL = new URL('/privacy-protections/storage-partitioning-2/iframe.html', frameOrigin);
+            const iframeURL = new URL('/test/privacy-protections/storage-partitioning-2/iframe.html', frameOrigin);
             const iframe = document.createElement('iframe');
             iframe.height = 1;
             iframe.width = 1;
@@ -194,7 +194,7 @@ async function runTests () {
     const sessionId = uuidv4();
 
     // Open test tab where all tests will be run
-    const testURL = new URL('/privacy-protections/storage-partitioning-2/testWindow.html', window.location.origin);
+    const testURL = new URL('/test/privacy-protections/storage-partitioning-2/testWindow.html', window.location.origin);
     testURL.searchParams.set('sessionId', sessionId);
     testURL.searchParams.set('isLocalTest', isLocalTest);
     window.open(testURL, '_blank', 'noopener');

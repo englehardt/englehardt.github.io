@@ -26,7 +26,7 @@ if (isLocalTest === null) {
 
 function readStorageInIframe () {
     return new Promise((resolve, reject) => {
-        const iframeURL = new URL('/privacy-protections/storage-partitioning-2/iframe.html?read', FIRST_PARTY_ORIGIN);
+        const iframeURL = new URL('/test/privacy-protections/storage-partitioning-2/iframe.html?read', FIRST_PARTY_ORIGIN);
 
         const iframe = document.createElement('iframe');
         iframe.src = iframeURL.href;
