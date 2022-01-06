@@ -3,8 +3,8 @@ const statusElement = document.querySelector('#status');
 const topURL = new URL(window.location.href);
 
 const isLocalTest = topURL.searchParams.get('isLocalTest') === 'true';
-const THIRD_PARTY_ORIGIN = isLocalTest ? `http://127.0.0.1:${window.location.port}` : 'https://good.third-party.site';
-const FIRST_PARTY_ORIGIN = isLocalTest ? `http://localhost:${window.location.port}` : 'https://privacy-test-pages.glitch.me';
+const THIRD_PARTY_ORIGIN = isLocalTest ? `http://127.0.0.1:${window.location.port}` : 'https://senglehardt.netlify.app';
+const FIRST_PARTY_ORIGIN = isLocalTest ? `http://localhost:${window.location.port}` : 'https://senglehardt.com';
 const configurations = [
     {
         id: 'same-site',
