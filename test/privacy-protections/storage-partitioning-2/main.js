@@ -197,7 +197,7 @@ async function runTests () {
     const testURL = new URL('/test/privacy-protections/storage-partitioning-2/testWindow.html', window.location.origin);
     testURL.searchParams.set('sessionId', sessionId);
     testURL.searchParams.set('isLocalTest', isLocalTest);
-    const testWindow = window.open(testURL, '_blank', 'noopener');
+    const testWindow = window.open(testURL, '_blank');
 
     window.addEventListener('storage', () => {
         testWindow.close();
