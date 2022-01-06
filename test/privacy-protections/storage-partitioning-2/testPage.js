@@ -46,7 +46,7 @@ function readStorageInIframe () {
 function endTests (sessionId, results) {
     console.log('END TEST CALLED');
     window.localStorage.setItem(sessionId, JSON.stringify(results));
-    // window.close();
+    window.close();
 }
 
 function saveTestResults (testId, testIteration, sessionId, retrieval) {
@@ -91,9 +91,7 @@ async function runTest () {
         nextURL.searchParams.set('sessionId', sessionId);
         nextURL.searchParams.set('isLocalTest', isLocalTest);
         nextURL.searchParams.set('results', JSON.stringify(results));
-        setTimeout(() => {
-            window.location.href = nextURL.href;
-        }, 1000);
+        window.location.href = nextURL.href;
         return;
     }
 
@@ -104,7 +102,5 @@ async function runTest () {
     nextURL.searchParams.set('results', JSON.stringify(results));
     nextURL.searchParams.set('testIndex', testIndex);
     nextURL.searchParams.set('testIteration', testIteration);
-    setTimeout(() => {
-        window.location.href = nextURL.href;
-    }, 1000);
+    window.location.href = nextURL.href;
 }
