@@ -1,0 +1,43 @@
+<html>
+  <head>
+  </head>
+  <body>
+    iframe that tries to resize itself
+    <script>
+      const frame = window.frameElement;
+
+      if (frame) {
+        // resize
+        function resize() {
+          frame.width = 500;
+          frame.height = 500;
+        }
+        setTimeout(resize, 1000);
+
+        // name
+        frame.name = 'foo';
+      } else {
+        console.log("no access to frameElement");
+      }
+
+      function addQuery() {
+        if (window.location.search !== "") {
+          return;
+        }
+        var searchParams = new URLSearchParams("foo", "bar");
+        window.location.search = searchParams;
+      }
+      addQuery();
+
+      function addFragment() {
+        window.location = window.location + '#foo';
+      }
+      addFragment();
+
+      function navigate() {
+        window.location = 'embedded-frame-2.html'
+      }
+      setTimeout(navigate, 3000);
+    </script>
+  </body>
+</html>

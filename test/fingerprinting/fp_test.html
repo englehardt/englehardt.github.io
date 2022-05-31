@@ -1,0 +1,166 @@
+<html>
+  <head>
+  <style>
+    div {display: inline-block;}
+  </style>
+  </head>
+  <body>
+    <h2>window.screen</h2>
+    <h4>availHeight x availWidth</h4>
+    <div id="availHeight"></div> x <div id="availWidth"></div>
+    <h4>height x width</h4>
+    <div id="height"></div> x <div id="width"></div>
+    <h4>availLeft and availTop</h4>
+    <div id="availLeft"></div> and <div id="availTop"></div>
+    <h4>screenX and screenY</h4>
+    <div id="screenX"></div> and <div id="screenY"></div>
+    <h4>screenLeft and screenTop</h4>
+    <div id="screenLeft"></div> and <div id="screenTop"></div>
+    <h4>left and top (FF only)</h4>
+    <div id="left"></div> and <div id="top"></div>
+    <h4>mozInnerScreenX and mozInnerScreenY (FF only)</h4>
+    <div id="mozInnerScreenX"></div> and <div id="mozInnerScreenY"></div>
+    <h2>WebGL</h2>
+    <h4>WEBGL_debug_renderer_info in getSupportedExtensions</h4>
+    <div id="supportedExtensions"></div>
+    <h4>RENDERER</h4>
+    <div id="renderer-1"></div>
+    <h4>UNMASKED_RENDERER_WEBGL</h4>
+    <div id="renderer-2"></div>
+    <h4>VENDOR</h4>
+    <div id="vendor-1"></div>
+    <h4>UNMASKED_VENDOR_WEBGL</h4>
+    <div id="vendor-2"></div>
+    <h4>Parameters</h4>
+    <div id='webgl-parameters'></div>
+
+    <br><br>
+
+    <button onclick="querySize()">Re-run</button><br/><br/>
+
+    <button onclick="windowOpen(500,500,500,500);">Pop-up; l=500,t=500,h=500,w=500</button><br />
+    <button onclick="windowOpen(500,500,0,0);">Pop-up; l=0,t=0,h=500,w=500</button><br />
+    <button onclick="windowOpen(500,500);">Pop-up; h=500,w=500</button><br />
+    <button onclick="popupCenter({url: 'fp_test.html', title: 'foo', w: 500, h: 500});">Pop-up; center</button><br />
+
+    <script>
+      const popupCenter = ({url, title, w, h}) => {
+          // Fixes dual-screen position                             Most browsers      Firefox
+          const dualScreenLeft = window.screenLeft !==  undefined ? window.screenLeft : window.screenX;
+          const dualScreenTop = window.screenTop !==  undefined   ? window.screenTop  : window.screenY;
+
+          const width = window.innerWidth ? window.innerWidth : document.documentElement.clientWidth ? document.documentElement.clientWidth : screen.width;
+          const height = window.innerHeight ? window.innerHeight : document.documentElement.clientHeight ? document.documentElement.clientHeight : screen.height;
+
+          const systemZoom = 1;
+          const left = (width - w) / 2 / systemZoom + dualScreenLeft
+          const top = (height - h) / 2 / systemZoom + dualScreenTop
+          console.log(top, left, systemZoom)
+          const newWindow = window.open(url, title,
+            `
+            scrollbars=yes,
+            width=${w / systemZoom},
+            height=${h / systemZoom},
+            top=${top},
+            left=${left}
+            `
+          )
+
+          if (window.focus) newWindow.focus();
+      }
+
+      function windowOpen(h, w, l, t) {
+        if (typeof l !== undefined && typeof t !== undefined) {
+          window.open('fp_test.html', 'foo', `left=${l},top=${t},height=${h},width=${w}`);
+          return;
+        }
+        window.open('fp_test.html', 'foo', `height=${h},width=${w}`);
+      }
+      function querySize() {
+        var availHeight = document.getElementById('availHeight');
+        availHeight.innerText = window.screen.availHeight;
+        var availWidth = document.getElementById('availWidth');
+        availWidth.innerText = window.screen.availWidth;
+        var availLeft = document.getElementById('availLeft');
+        availLeft.innerText = window.screen.availLeft;
+        var availTop = document.getElementById('availTop');
+        availTop.innerText = window.screen.availTop;
+        var height = document.getElementById('height');
+        height.innerText = window.screen.height;
+        var width = document.getElementById('width');
+        width.innerText = window.screen.width;
+        document.getElementById('screenX').innerText = window.screenX;
+        document.getElementById('screenY').innerText = window.screenY;
+        document.getElementById('screenLeft').innerText = window.screenLeft;
+        document.getElementById('screenTop').innerText = window.screenTop;
+        if (window.hasOwnProperty('mozInnerScreenX')) {
+          document.getElementById('mozInnerScreenX').innerText = window.mozInnerScreenX;
+        }
+        if (window.hasOwnProperty('mozInnerScreenY')) {
+          document.getElementById('mozInnerScreenY').innerText = window.mozInnerScreenY;
+        }
+        if (Screen.prototype.hasOwnProperty('top')) {
+          document.getElementById('top').innerText = window.screen.top;
+        }
+        if (Screen.prototype.hasOwnProperty('left')) {
+          document.getElementById('left').innerText = window.screen.left;
+        }
+      }
+      setTimeout(querySize, 1000);
+      window.addEventListener('resize', function () {
+          querySize()
+      })
+
+      function getVendorAndRenderer() {
+        canvas = document.createElement('canvas');
+        var ctx = canvas.getContext("webgl2") || canvas.getContext("experimental-webgl");
+        var supported = ctx.getSupportedExtensions().indexOf("WEBGL_debug_renderer_info") >= 0;
+        document.getElementById('supportedExtensions').innerText = supported;
+        try {
+          var webGLVendor2 = ctx.getParameter(ctx.getExtension('WEBGL_debug_renderer_info').UNMASKED_VENDOR_WEBGL);
+          var webGLRenderer2 = ctx.getParameter(ctx.getExtension('WEBGL_debug_renderer_info').UNMASKED_RENDERER_WEBGL);
+        } catch {
+          var webGLRenderer2 = 'null';
+          var webGLVendor2 = 'null';
+        }
+        var webGLVendor1 = ctx.getParameter(ctx.VENDOR);
+        var webGLRenderer1 = ctx.getParameter(ctx.RENDERER);
+        document.getElementById('renderer-1').innerText = webGLRenderer1;
+        document.getElementById('vendor-1').innerText = webGLVendor1;
+        document.getElementById('renderer-2').innerText = webGLRenderer2;
+        document.getElementById('vendor-2').innerText = webGLVendor2;
+      }
+      setTimeout(getVendorAndRenderer, 1000);
+
+      const parameters = [
+        'MAX_VERTEX_UNIFORM_COMPONENTS',
+        'MAX_VERTEX_UNIFORM_BLOCKS',
+        'MAX_VERTEX_OUTPUT_COMPONENTS',
+        'MAX_VARYING_COMPONENTS',
+        'MAX_TRANSFORM_FEEDBACK_INTERLEAVED_COMPONENTS',
+        'MAX_FRAGMENT_UNIFORM_COMPONENTS',
+        'MAX_FRAGMENT_UNIFORM_BLOCKS',
+        'MAX_FRAGMENT_INPUT_COMPONENTS',
+        'MAX_UNIFORM_BUFFER_BINDINGS',
+        'MAX_COMBINED_UNIFORM_BLOCKS',
+        'MAX_COMBINED_VERTEX_UNIFORM_COMPONENTS',
+        'MAX_COMBINED_FRAGMENT_UNIFORM_COMPONENTS',
+        'MAX_CUBE_MAP_TEXTURE_SIZE',
+        'MAX_RENDERBUFFER_SIZE',
+        'MAX_TEXTURE_SIZE',
+        'MAX_VERTEX_UNIFORM_VECTORS',
+      ];
+      function getWebGLParameters(interfaceName) {
+        canvas = document.createElement('canvas');
+        var ctx = canvas.getContext('webgl2');
+        let paramValues = {};
+        parameters.forEach(parameter => {
+          paramValues[parameter] = ctx.getParameter(ctx[parameter])
+        });
+        document.getElementById('webgl-parameters').innerText = JSON.stringify(paramValues, null, 4);
+      }
+      setTimeout(getWebGLParameters, 1000);
+
+    </script>
+  </body>
+</html>

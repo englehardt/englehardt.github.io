@@ -1,0 +1,83 @@
+<html>
+  <head>
+  </head>
+  <body>
+    <ul id="info">
+    </ul>
+    <script>
+        function addBullet(text) {
+            const ul = document.getElementById('info');
+            const li = document.createElement('ul');
+            li.innerText = text;
+            ul.appendChild(li)
+        }
+        // Helper to get originating script urls
+        var inLog=false;
+        function getStackTrace() {
+          inLog=true;
+          let stack;
+
+          try {
+            throw new Error();
+          } catch (err) {
+            stack = err.stack;
+          }
+
+          inLog=false;
+          return stack;
+        }
+
+        window.addEventListener("message", (event) => {
+          console.log(event);
+          addBullet(JSON.stringify(event.data)+'\n');
+          addBullet('------------------')
+        }, false);
+        Object.defineProperty(Element.prototype, 'attachShadow', {
+          get: () => addBullet('attachShadow-get'),
+          set: () => addBullet('attachShadow-set')
+        });
+
+        var propDesc = Object.getOwnPropertyDescriptor(Object, 'defineProperty');
+        Object.defineProperty(Object, 'defineProperty', {
+          get: () => {
+            if (!inLog) {
+              console.log('defineProperty-get',getStackTrace())
+              addBullet('defineProperty-get'+getStackTrace()+'\n')
+              addBullet('------------------')
+            }
+            return propDesc.value;
+          },
+          set: () => {
+            console.log('arrayFrom-set')
+            addBullet('arrayFrom-set')
+          }
+        });
+
+        var arrDesc = Object.getOwnPropertyDescriptor(Array, 'from');
+        Object.defineProperty(Array, 'from', {
+          get: () => {
+            console.log('arrayFrom-get',getStackTrace())
+            addBullet('arrayFrom-get'+getStackTrace()+'\n')
+            addBullet('------------------')
+            return arrDesc.value;
+          },
+          set: () => {
+            console.log('arrayFrom-set')
+            addBullet('arrayFrom-set')
+          }
+        });
+    </script>
+
+  <form class="modal-content" action="/action_page.php">
+    <div class="container">
+      <h1>Sign Up</h1>
+      <p>Please fill in this form to create an account.</p>
+      <hr>
+      <label for="email"><b>Email</b></label>
+      <input type="text" placeholder="Enter Email" name="email" required>
+      <button type="submit" class="signupbtn">Sign Up</button>
+    </div>
+  </form>
+
+  </body>
+</html>

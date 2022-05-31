@@ -36,6 +36,13 @@
       <button onclick='hasSA()'>hasStorageAccess()</button><br />
       <p>Return value of hasStorageAccess():</p><pre id='has_storage_access'>not yet called</pre><br />
 
+      <!-- Storage access API -->
+      <br /><br />
+      <h4>Broadcast Channel</h4>
+      <button onclick='sendMessageToChannel()'>sendMessageToChannel()</button><br />
+      <p>Message sent to channel:</p><pre id='channel_sent'>none</pre><br />
+      <p>Messages received from channel:</p><pre id='channel_received'>none</pre><br />
+
 
       <script>
         var newRandVal = Math.random();
@@ -169,6 +176,26 @@
           );
         }
         hasSA();
+
+        // BroadcastChannel
+        function sendMessageToChannel() {
+          const bc = new BroadcastChannel('test_channel');
+          bc.postMessage(newRandVal);
+          let update = document.getElementById('channel_sent');
+          update.innerHTML = newRandVal;
+          bc.close();
+        }
+        sendMessageToChannel();
+
+        function startListening() {
+          const bc = new BroadcastChannel('test_channel');
+          bc.onmessage = function (ev) {
+            let msg = document.getElementById('channel_received');
+            msg.innerText = msg.innerText + '\n' + ev.data;
+          }
+        }
+        startListening();
+
       </script>
     </body>
 </html>

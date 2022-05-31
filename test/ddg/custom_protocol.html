@@ -1,0 +1,45 @@
+<html>
+  <head>
+  </head>
+  <body>
+    <button onclick="openCustomProtocol('zoommtg://foo123')">Click to open zoom once</button><br>
+    <button onclick="openInLoop('zoommtg://foo123')">Click to open zoom in loop</button><br>
+    <button onclick="openInLoop()">Click to open random protocol in loop</button><br>
+    <script>
+      function makeid(length) {
+          var result           = '';
+          var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+          var charactersLength = characters.length;
+          for ( var i = 0; i < length; i++ ) {
+            result += characters.charAt(Math.floor(Math.random() * charactersLength));
+         }
+         return result;
+      }
+
+      function openCustomProtocol(src) {
+        let iframe = document.createElement('iframe');
+        iframe.src = src;
+        iframe.style = 'display:none';
+        document.body.appendChild(iframe);
+      }
+
+      function openInLoop(src) {
+        if (typeof src === 'undefined') {
+          src = makeid(5) + '://foo123';
+          openCustomProtocol(src);
+          setTimeout(() => {openInLoop()}, 500);
+          return;
+        }
+        openCustomProtocol(src);
+        setTimeout(() => {openInLoop(src)}, 500);
+      }
+
+      if (window.location.href.includes('?run-zoom')) {
+        openInLoop('zoommtg://foo123');
+      }
+      if (window.location.href.includes('?run-random')) {
+        openInLoop();
+      }
+    </script>
+  </body>
+</html>

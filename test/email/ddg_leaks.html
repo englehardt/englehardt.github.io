@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<head>
+    <meta encoding='utf-8' />
+    <title>DDG Leaks</title>
+</head>
+<body>
+    <ul id="info">
+        
+    </ul>
+    <script>
+        function addBullet(text) {
+            const ul = document.getElementById('info');
+            const li = document.createElement('ul');
+            li.innerText = text;
+            ul.appendChild(li)
+        }
+
+        window.addEventListener('load', () => {
+            if (navigator.userAgent.indexOf('DuckDuckGo') > -1) {
+                addBullet('✅ This is a DDG browser')
+            } else {
+                addBullet('Not a DDG browser')
+            }
+            if (window.LoginDetection) {
+                window.LoginDetection.loginDetected()
+                addBullet('I can call LoginDetection.loginDetected()')
+            }
+            if (window.BlobConverter) {
+                addBullet('I can call BlobConverter.convertBlobToDataUri()')
+            }
+            if (window.EmailInterface) {
+                addBullet('I can access EmailInterface')
+                if (EmailInterface.isSignedIn()) {
+                    addBullet('✅ You are signed into email protection')
+                } else {
+                    addBullet('Not signed in')
+                }
+                if (EmailInterface.getAlias) {
+                    const { nextAlias } = JSON.parse(EmailInterface.getAlias())
+                    addBullet(`I can email you at: ${nextAlias}`)
+                }
+                if (EmailInterface.showTooltip) {
+                    EmailInterface.showTooltip()
+                    addBullet('I can trigger an email popup')
+                }
+            }
+        })
+    </script>
+</body>
