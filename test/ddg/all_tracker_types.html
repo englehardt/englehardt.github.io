@@ -6,20 +6,25 @@
     <ul>
       <li>default:block -- 1dmp.io</li>
       <li>block rule on default:ignore -- tidiochat.com</li>
+      <li>Non-tracker CNAME to default:block tracker -- dtm.academy.com CNAME to usadmm.dotomi.com</li>
+      <li>Non-tracker CNAME to default:ignore tracker with block rule -- https://analytics.poferries.com/JavascriptInsert.js where analytics.poferries.com is CNAMEd to collect-prd-alb-539115803.eu-west-2.elb.amazonaws.com and the collect-prd-alb-539115803.eu-west-2.elb.amazonaws.com tracker has a rule collect-prd-alb-539115803.eu-west-2.elb.amazonaws.com/JavascriptInsert.js</li>
     </ul>
     <h3>Not Blocked</h3>
     <ul>
       <li>default:ignore -- tinypass.com</li>
       <li>action:ignore on default:block -- js.usemessages.com</li>
       <li>exception type image rule on default:block -- static-maps.yandex.ru</li>
-      <li>CNAME -- TODO</li>
+      <li>Non-tracker CNAME to default:ignore tracker -- fff.dailymail.co.uk CNAME to fff.dailymail.co.uk.edgekey.net and uk.edgekey.net is default:ignore</li>
     </ul>
 
     <h3>External Sites</h3>
+    Rules that are scoped to sites or require first-party loads can't be replicated here.
     <ul>
       <li><a href="https://www.tf1.fr/">tf1.fr</a> should load static.adsafeprotected.com/favicon.ico, which is a domain-scoped exception under a default:block rule</li>
       <li><a href="https://mlb.com">mlb.com</a> should load pubads.g.doubleclick.net/gampad/, which is a domains-scoped AND type-scoped request (xml) under a default:block rule</li>
       <li><a href="https://youtube.com">youtube.com</a> should load a number of same-entity google domains (gstatic.com, google.com, doubleclick.net)</li>
+      <li><a href="https://bose.com">bose.com</a> should block emetrics.bose.com as it is CNAMED to bose.com.ssl.sc.omtrdc.net and omtrdc.net is default:block</li>
+      <li><a href=""></a></li>
     </ul>
 
     <img src="https://1dmp.io/foo.png">
@@ -28,5 +33,7 @@
     <script src="https://tidiochat.com//1_100_0/static/js/widget.00a3b5ba3aacd66ce366.js"></script>
     <script src="https://js.usemessages.com/conversations-embed.js"></script>
     <img src="https://dtm.academy.com/foo.png">
+    <img src="https://fff.dailymail.co.uk/foo.png">
+    <script src="https://analytics.poferries.com/JavascriptInsert.js"></script>
   </body>
 </html>
