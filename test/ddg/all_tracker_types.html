@@ -2,22 +2,31 @@
   <head>
   </head>
   <body>
+    <h3>Blocked</h3>
     <ul>
       <li>default:block -- 1dmp.io</li>
+      <li>block rule on default:ignore -- tidiochat.com</li>
+    </ul>
+    <h3>Not Blocked</h3>
+    <ul>
       <li>default:ignore -- tinypass.com</li>
-      <li>plain rule on default:block -- </li>
       <li>action:ignore on default:block -- js.usemessages.com</li>
       <li>exception type image rule on default:block -- static-maps.yandex.ru</li>
-      <li>plain rule on default:ignore -- tidiochat.com</li>
-      <li>same-entity -- TODO (not happening on my personal site)</li>
       <li>CNAME -- TODO</li>
     </ul>
-    <p> "plain rule" means a rule item hanging off of a tracker domain set to the specified default. No exceptions / type filters. No explicit "action" set either.</p>
+
+    <h3>External Sites</h3>
+    <ul>
+      <li><a href="https://www.tf1.fr/">tf1.fr</a> should load static.adsafeprotected.com/favicon.ico, which is a domain-scoped exception under a default:block rule</li>
+      <li><a href="https://mlb.com">mlb.com</a> should load pubads.g.doubleclick.net/gampad/, which is a domains-scoped AND type-scoped request (xml) under a default:block rule</li>
+      <li><a href="https://youtube.com">youtube.com</a> should load a number of same-entity google domains (gstatic.com, google.com, doubleclick.net)</li>
+    </ul>
 
     <img src="https://1dmp.io/foo.png">
     <img src="https://tinypass.com/foo.png">
     <img src="https://static-maps.yandex.ru/foo.png">
     <script src="https://tidiochat.com//1_100_0/static/js/widget.00a3b5ba3aacd66ce366.js"></script>
     <script src="https://js.usemessages.com/conversations-embed.js"></script>
+    <img src="https://dtm.academy.com/foo.png">
   </body>
 </html>
