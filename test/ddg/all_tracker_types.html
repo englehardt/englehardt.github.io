@@ -7,7 +7,7 @@
       <li>default:block -- 1dmp.io</li>
       <li>block rule on default:ignore -- tidiochat.com</li>
       <li>Non-tracker CNAME to default:block tracker -- dtm.academy.com CNAME to usadmm.dotomi.com</li>
-      <li>Non-tracker CNAME to default:ignore tracker with block rule -- https://analytics.poferries.com/JavascriptInsert.js where analytics.poferries.com is CNAMEd to collect-prd-alb-539115803.eu-west-2.elb.amazonaws.com and the collect-prd-alb-539115803.eu-west-2.elb.amazonaws.com tracker has a rule collect-prd-alb-539115803.eu-west-2.elb.amazonaws.com/JavascriptInsert.js</li>
+      <li>Non-tracker CNAME to default:ignore tracker with block rule -- gbxgateway.dell.com is CNAMEd to gbxgateway.dell.com-v1.edgekey.net.com-v1 and the com-v1.edgekey.net tracker is default:ignore with a rule to block com-v1.edgekey.net/personlization-sdk.min.js.</li>
     </ul>
     <h3>Not Blocked</h3>
     <ul>
@@ -24,7 +24,6 @@
       <li><a href="https://mlb.com">mlb.com</a> should load pubads.g.doubleclick.net/gampad/, which is a domains-scoped AND type-scoped request (xml) under a default:block rule</li>
       <li><a href="https://youtube.com">youtube.com</a> should load a number of same-entity google domains (gstatic.com, google.com, doubleclick.net)</li>
       <li><a href="https://bose.com">bose.com</a> should block emetrics.bose.com as it is CNAMED to bose.com.ssl.sc.omtrdc.net and omtrdc.net is default:block</li>
-      <li><a href="https://www.poferries.com">poferries.com</a> should block https://analytics.poferries.com/JavascriptInsert.js from loading, since analytics.poferries.com is CNAMEd to collect-prd-alb-539115803.eu-west-2.elb.amazonaws.com and the collect-prd-alb-539115803.eu-west-2.elb.amazonaws.com tracker has a rule collect-prd-alb-539115803.eu-west-2.elb.amazonaws.com/JavascriptInsert.js</li>
     </ul>
 
     <img src="https://1dmp.io/foo.png">
@@ -34,7 +33,6 @@
     <script src="https://js.usemessages.com/conversations-embed.js"></script>
     <img src="https://dtm.academy.com/foo.png">
     <img src="https://fff.dailymail.co.uk/foo.png">
-    <script src="https://analytics.poferries.com/JavascriptInsert.js"></script>
     <script src="https://gbxgateway.dell.com/personlization-sdk.min.js"></script>
   </body>
 </html>
