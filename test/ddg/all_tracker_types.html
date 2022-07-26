@@ -24,6 +24,8 @@
       <li><a href="https://mlb.com">mlb.com</a> should load pubads.g.doubleclick.net/gampad/, which is a domains-scoped AND type-scoped request (xml) under a default:block rule</li>
       <li><a href="https://youtube.com">youtube.com</a> should load a number of same-entity google domains (gstatic.com, google.com, doubleclick.net)</li>
       <li><a href="https://bose.com">bose.com</a> should block emetrics.bose.com as it is CNAMED to bose.com.ssl.sc.omtrdc.net and omtrdc.net is default:block</li>
+      <li><a href="https://www.loksatta.com/">loksatta.com</a> should block https://ua.loksatta.com/personlization-sdk.min.js since ua.loksatta.com is CNAMED to com-v1.edgekey.net and com-v1.edgekey.net is default:ignore with a block rule for com-v1.edgekey.net/personlization-sdk.min.js.</li>
+      <li><a href="https://dell.com">dell.com</a> should load resources from gbxgateway.dell.com since gbxgateway.dell.com is CNAMEd to com-v1.edgekey.net and com-v1.edgekey.net is a default:ignore tracker. The real dell site does not load the personlization test file we load here.</li>
     </ul>
 
     <img src="https://1dmp.io/foo.png">
