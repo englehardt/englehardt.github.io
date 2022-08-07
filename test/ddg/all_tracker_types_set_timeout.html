@@ -1,0 +1,47 @@
+<html>
+  <head>
+  </head>
+  <body>
+    <h3>Blocked</h3>
+    <ul>
+      <li>default:block -- 1dmp.io</li>
+      <li>block rule on default:ignore -- tidiochat.com</li>
+      <li>Non-tracker CNAME to default:block tracker -- a.rohde-schwarz.com CNAME to rohde-schwarz.com.ssl.sc.omtrdc.net</li>
+      <li>Non-tracker CNAME to default:ignore tracker with block rule -- gbxgateway.dell.com is CNAMEd to gbxgateway.dell.com-v1.edgekey.net and the com-v1.edgekey.net tracker is default:ignore with a rule to block com-v1.edgekey.net/personlization-sdk.min.js.</li>
+    </ul>
+    <h3>Not Blocked</h3>
+    <ul>
+      <li>default:ignore -- tinypass.com</li>
+      <li>action:ignore on default:block -- js.usemessages.com</li>
+      <li>exception type image rule on default:block -- static-maps.yandex.ru</li>
+      <li>Non-tracker CNAME to default:ignore tracker -- fff.dailymail.co.uk CNAME to fff.dailymail.co.uk.edgekey.net and uk.edgekey.net is default:ignore</li>
+    </ul>
+
+    <h3>External Sites</h3>
+    Rules that are scoped to sites or require first-party loads can't be replicated here.
+    <ul>
+      <li><a href="https://www.tf1.fr/">tf1.fr</a> should load static.adsafeprotected.com/favicon.ico, which is a domain-scoped exception under a default:block rule</li>
+      <li><a href="https://mlb.com">mlb.com</a> should load pubads.g.doubleclick.net/gampad/, which is a domains-scoped AND type-scoped request (xml) under a default:block rule</li>
+      <li><a href="https://youtube.com">youtube.com</a> should load a number of same-entity google domains (gstatic.com, google.com, doubleclick.net)</li>
+      <li><a href="https://bose.com">bose.com</a> should block emetrics.bose.com as it is CNAMED to bose.com.ssl.sc.omtrdc.net and omtrdc.net is default:block</li>
+      <li><a href="https://www.loksatta.com/">loksatta.com</a> should block https://ua.loksatta.com/personlization-sdk.min.js since ua.loksatta.com is CNAMED to com-v1.edgekey.net and com-v1.edgekey.net is default:ignore with a block rule for com-v1.edgekey.net/personlization-sdk.min.js.</li>
+      <li><a href="https://dell.com">dell.com</a> should load resources from gbxgateway.dell.com since gbxgateway.dell.com is CNAMEd to com-v1.edgekey.net and com-v1.edgekey.net is a default:ignore tracker. The real dell site does not load the personlization test file we load here.</li>
+    </ul>
+
+    <img src="https://1dmp.io/foo.png">
+    <img src="https://tinypass.com/foo.png">
+    <img src="https://static-maps.yandex.ru/foo.png">
+    <script src="https://tidiochat.com//1_105_0/static/js/widget.9a9c29fa54bcc269cd07.js"></script>
+    <script src="https://js.usemessages.com/conversations-embed.js"></script>
+    <img src="https://a.rohde-schwarz.com/foo.png">
+    <img src="https://fff.dailymail.co.uk/foo.png">
+    <script src="https://gbxgateway.dell.com/personlization-sdk.min.js"></script>
+    <script>
+      setTimeout(()=>{
+              var img = document.createElement('img');
+              img.src = 'https://doubleclick.net/foo.png';
+              document.body.appendChild(img)
+            }, 1000);
+    </script>
+  </body>
+</html>
