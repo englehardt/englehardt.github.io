@@ -1,0 +1,34 @@
+<html>
+  <head>
+  </head>
+  <body>
+    <h3>Protections Enabled</h3>
+    <ul>
+      <li>[Green] Requests Blocked from Loading
+        <ul>
+          <li>[Subtext] "Tracking requests were blocked from loading on this page."</li>
+          <li>[Subpanel][Green shield (check)] "The following third-party domains’ requests were blocked from loading because they were identified as tracking requests. If a company's requests are loaded, it can allow them to profile you."
+          </li>
+        </ul>
+      </li>
+      <li>[Gray] Third-Party Requests Loaded
+        <ul>
+          <li>[Subtext] "Requests from other third-party domains were loaded on this page."</li>
+          <li>[Subpanel][Gray shield (i)] "The following third-party domains’ requests were loaded. If a company's requests are loaded, it can allow them to profile you, though our other web tracking protections still apply."
+          </li>
+        </ul>
+      </li>
+    </ul>
+    <h3>Blocked</h3>
+    <ul>
+      <li>default:block -- 1dmp.io</li>
+    </ul>
+    <h3>Not Blocked</h3>
+    <ul>
+      <li>default:ignore -- tinypass.com</li>
+    </ul>
+
+    <img src="https://1dmp.io/foo.png">
+    <img src="https://tinypass.com/foo.png">
+  </body>
+</html>

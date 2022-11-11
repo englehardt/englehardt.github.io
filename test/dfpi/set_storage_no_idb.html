@@ -1,9 +1,5 @@
 <!DOCTYPE HTML>
 <html lang="en-US" dir="ltr">
-    <head>
-        <meta charset="utf-8">
-        <script src="https://cdn.jsdelivr.net/npm/idb-keyval@3/dist/idb-keyval-iife.min.js"></script>
-    </head>
     <body>
       <h4>cookies</h4>
       <p id="cookie_message"></p>
@@ -20,30 +16,8 @@
       <div id="set_ss_message"><p>Trying to set foo in sessionStorage to:</p><pre id='ss_set'></pre></div>
       <p>Current sessionStorage</p><pre id='ss_read'></pre>
 
-      <h4>Indexed DB</h4>
-      <p id="idb_message"></p>
-      <div id="set_idb_message"><p>Trying to set foo in indexedDB to:</p><pre id='idb_set'></pre></div>
-      <p>Current IndexedDB</p><pre id='idb_read'></pre>
-
       <button onclick="setAllStorageLocations(false);">rerun</button>
       <button onclick="setAllStorageLocations(true);">reset</button>
-
-      <!-- Storage access API -->
-      <br /><br />
-      <h4>Storage Access API</h4>
-      <button onclick='requestSA()'>requestStorageAccess()</button><br />
-      <p>Return value of requestStorageAccess():</p><pre id='request_storage_access'>not yet called</pre><br />
-      <button onclick='hasSA()'>hasStorageAccess()</button><br />
-      <p>Return value of hasStorageAccess():</p><pre id='has_storage_access'>not yet called</pre><br />
-
-      <!-- Storage access API -->
-      <br /><br />
-      <h4>Broadcast Channel</h4>
-      <button onclick='sendMessageToChannel()'>sendMessageToChannel()</button><br />
-      <p>Message sent to channel:</p><pre id='channel_sent'>none</pre><br />
-      <p>Messages received from channel:</p><pre id='channel_received'>none</pre><br />
-
-
       <script>
         var newRandVal = Math.random();
         function setCookies(reset=false) {
@@ -125,32 +99,6 @@
             get.innerHTML = 'foo='+foo;
           }
         }
-        async function setIndexedDB(reset) {
-          var foo = await idbKeyval.get('foo');
-          var msg = document.getElementById('idb_message');
-          if (foo === undefined || reset === true) {
-            msg.innerHTML = 'IndexedDB key foo not yet set...';
-            var set_message_div = document.getElementById('set_idb_message');
-            set_message_div.style = "";
-
-            // Set a new value for foo
-            var set = document.getElementById('idb_set');
-            set.innerHTML = newRandVal;
-            await idbKeyval.set('foo', newRandVal);
-
-            // Get value of foo
-            foo = await idbKeyval.get('foo');
-            var get = document.getElementById('idb_read');
-            get.innerHTML = 'foo='+foo;
-          } else {
-            msg.innerHTML = 'IndexedDB key foo already written, NOT overwriting...';
-            var set_message_div = document.getElementById('set_idb_message');
-            set_message_div.style = "display: none;";
-
-            var get = document.getElementById('idb_read');
-            get.innerHTML = 'foo='+foo;
-          }
-        }
         function setAllStorageLocations(reset=false) {
           setCookies(reset);
           setLocalStorage(reset);
@@ -158,44 +106,6 @@
           setIndexedDB(reset);
         }
         setAllStorageLocations(false);
-
-        // Storage Access API
-        function requestSA() {
-          var result = document.getElementById('request_storage_access');
-          document.requestStorageAccess().then(
-            () => {result.innerHTML = 'access granted'},
-            () => {result.innerHTML = 'access denied'}
-          );
-        }
-
-        function hasSA() {
-          var result = document.getElementById('has_storage_access');
-          document.hasStorageAccess().then(
-            (hasAccess) => {result.innerHTML = hasAccess},
-            (reason) => {result.innerHTML = 'promise rejected for reason' + reason}
-          );
-        }
-        hasSA();
-
-        // BroadcastChannel
-        function sendMessageToChannel() {
-          const bc = new BroadcastChannel('test_channel');
-          bc.postMessage(newRandVal);
-          let update = document.getElementById('channel_sent');
-          update.innerHTML = newRandVal;
-          bc.close();
-        }
-        sendMessageToChannel();
-
-        function startListening() {
-          const bc = new BroadcastChannel('test_channel');
-          bc.onmessage = function (ev) {
-            let msg = document.getElementById('channel_received');
-            msg.innerText = msg.innerText + '\n' + ev.data;
-          }
-        }
-        startListening();
-
       </script>
     </body>
 </html>
