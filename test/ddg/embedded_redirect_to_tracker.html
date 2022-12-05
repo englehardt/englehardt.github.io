@@ -18,10 +18,10 @@
     <b>Indirect Immediate</b>
     <pre id='fp_indirect'></pre>
     <br>
-    <b>Direct 2000ms delay</b>
+    <b>Direct 500ms delay</b>
     <pre id='fp_direct_delay'></pre>
     <br>
-    <b>Indirect 2000ms delay</b>
+    <b>Indirect 500ms delay</b>
     <pre id='fp_indirect_delay'></pre>
     <br>
 
@@ -29,8 +29,8 @@
       document.getElementById('fp_direct').innerText = navigator.deviceMemory;
       document.getElementById('fp_indirect').innerText = document.body.appendChild(document.createElement('iframe')).contentWindow.navigator.deviceMemory;
 
-      setTimeout(() => {document.getElementById('fp_direct_delay').innerText = navigator.deviceMemory}, 2000);
-      setTimeout(() => {document.getElementById('fp_indirect_delay').innerText = document.body.appendChild(document.createElement('iframe')).contentWindow.navigator.deviceMemory}, 2000);
+      setTimeout(() => {document.getElementById('fp_direct_delay').innerText = navigator.deviceMemory}, 500);
+      setTimeout(() => {document.getElementById('fp_indirect_delay').innerText = document.body.appendChild(document.createElement('iframe')).contentWindow.navigator.deviceMemory}, 500);
     </script>
 
   </body>
