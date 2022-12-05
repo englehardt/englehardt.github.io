@@ -12,16 +12,25 @@
 
     <br><br>
     FP:<br>
-    <b>Direct</b>
+    <b>Direct Immediate</b>
     <pre id='fp_direct'></pre>
     <br>
-    <b>Indirect</b>
+    <b>Indirect Immediate</b>
     <pre id='fp_indirect'</pre>
+    <br>
+    <b>Direct setTimeout(500)</b>
+    <pre id='fp_direct_delay'></pre>
+    <br>
+    <b>Indirect setTimeout(500)</b>
+    <pre id='fp_indirect_delay'</pre>
     <br>
 
     <script>
       document.getElementById('fp_direct').innerText = navigator.hardwareConcurrency;
       document.getElementById('fp_indirect').innerText = document.body.appendChild(document.createElement('iframe')).contentWindow.navigator.hardwareConcurrency;
+
+      setTimeout(() => {document.getElementById('fp_direct_delay').innerText = navigator.hardwareConcurrency}, 500);
+      setTimeout(() => {document.getElementById('fp_indirect_delay').innerText = document.body.appendChild(document.createElement('iframe')).contentWindow.navigator.hardwareConcurrency}, 500);
     </script>
 
   </body>
