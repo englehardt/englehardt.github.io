@@ -26,11 +26,11 @@
     <br>
 
     <script>
-      document.getElementById('fp_direct').innerText = navigator.hardwareConcurrency;
-      document.getElementById('fp_indirect').innerText = document.body.appendChild(document.createElement('iframe')).contentWindow.navigator.hardwareConcurrency;
+      document.getElementById('fp_direct').innerText = navigator.deviceMemory;
+      document.getElementById('fp_indirect').innerText = document.body.appendChild(document.createElement('iframe')).contentWindow.navigator.deviceMemory;
 
-      setTimeout(() => {document.getElementById('fp_direct_delay').innerText = navigator.hardwareConcurrency}, 2000);
-      setTimeout(() => {document.getElementById('fp_indirect_delay').innerText = document.body.appendChild(document.createElement('iframe')).contentWindow.navigator.hardwareConcurrency}, 2000);
+      setTimeout(() => {document.getElementById('fp_direct_delay').innerText = navigator.deviceMemory}, 2000);
+      setTimeout(() => {document.getElementById('fp_indirect_delay').innerText = document.body.appendChild(document.createElement('iframe')).contentWindow.navigator.deviceMemory}, 2000);
     </script>
 
   </body>
