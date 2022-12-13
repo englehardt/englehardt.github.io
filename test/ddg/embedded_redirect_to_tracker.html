@@ -2,7 +2,36 @@
   <head>
   </head>
   <body>
-    Inlcudes an image from a tracker that is the result of a redirect.
+
+    Tracker:<br>
+    <b>Direct</b>
+    <img src="https://doubleclick.net/favicon.ico" />
+    <br>
+    <b>Redirect</b>
     <img src="https://httpbin.org/redirect-to?url=https%3A%2F%2Fdoubleclick.net%2Ffavicon.ico&status_code=301" />
+
+    <br><br>
+    FP:<br>
+    <b>Direct Immediate</b>
+    <pre id='fp_direct'></pre>
+    <br>
+    <b>Indirect Immediate</b>
+    <pre id='fp_indirect'></pre>
+    <br>
+    <b>Direct 500ms delay</b>
+    <pre id='fp_direct_delay'></pre>
+    <br>
+    <b>Indirect 500ms delay</b>
+    <pre id='fp_indirect_delay'></pre>
+    <br>
+
+    <script>
+      document.getElementById('fp_direct').innerText = navigator.deviceMemory;
+      document.getElementById('fp_indirect').innerText = document.body.appendChild(document.createElement('iframe')).contentWindow.navigator.deviceMemory;
+
+      setTimeout(() => {document.getElementById('fp_direct_delay').innerText = navigator.deviceMemory}, 500);
+      setTimeout(() => {document.getElementById('fp_indirect_delay').innerText = document.body.appendChild(document.createElement('iframe')).contentWindow.navigator.deviceMemory}, 500);
+    </script>
+
   </body>
 </html>
